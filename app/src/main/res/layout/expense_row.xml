@@ -12,6 +12,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:hint="@string/category"
+            android:textColor="@color/black"
             android:inputType="text"
             android:layout_height="wrap_content"/>
 
@@ -20,6 +21,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:hint="@string/amount"
+            android:textColor="@color/black"
             android:inputType="numberDecimal"
             android:layout_marginStart="8dp"
             android:layout_height="wrap_content"/>
