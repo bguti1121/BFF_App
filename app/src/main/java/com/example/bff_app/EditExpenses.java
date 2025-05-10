@@ -81,7 +81,8 @@ public class EditExpenses extends AppCompatActivity {
 
                         categoryInput.setText(expense.getCategory());
                         amountInput.setText(String.valueOf(expense.getAmount()));
-                        row.setTag(expenseId);
+                        row.setTag(R.id.expenseIdTag, expenseId);
+                        row.setTag(R.id.expenseDateTag, expense.getExpenseDate());
 
                         Button deleteButton = row.findViewById(R.id.deleteExpenseBtn);
                         deleteButton.setVisibility(View.VISIBLE);
@@ -104,7 +105,7 @@ public class EditExpenses extends AppCompatActivity {
         if (expenseContainer.getChildCount() > 1) {
             deleteButton.setVisibility(View.VISIBLE);
             deleteButton.setOnClickListener(v -> {
-                String expenseId = (String) row.getTag();
+                String expenseId = (String) row.getTag(R.id.expenseIdTag);
                 if (expenseId != null) deletedExpenseIds.add(expenseId);
                 expenseContainer.removeView(row);
             });
@@ -121,6 +122,7 @@ public class EditExpenses extends AppCompatActivity {
     }
 
     private void saveExpensesToFirebase() {
+        ExpenseManager expenseManager = new ExpenseManager();
         DatabaseReference baseRef = FirebaseDatabase.getInstance().getReference("Users").child(uid);
         DatabaseReference expensesRef = baseRef.child("expenses");
 
