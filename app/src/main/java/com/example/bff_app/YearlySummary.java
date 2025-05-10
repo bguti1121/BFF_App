@@ -108,6 +108,7 @@ public class YearlySummary extends AppCompatActivity {
     private void loadYearlyData() {
         float[] monthlyExpenses = new float[12];
         float[] monthlyIncomes = new float[12];
+        int currentYear = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR);
         // Provides reference to database User -> expenses, then loads them
         userRef.child("expenses").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -115,12 +116,37 @@ public class YearlySummary extends AppCompatActivity {
                 for (DataSnapshot expenseSnap : snapshot.getChildren()) {
                     String dateStr = expenseSnap.child("expenseDate").getValue(String.class);
                     Double amount = expenseSnap.child("amount").getValue(Double.class);
+                    Boolean isMonthly = expenseSnap.child("monthly").getValue(Boolean.class);
                     // Error Checking
                     Log.d("FirebaseCheck", "Expense snapshot: " + snapshot.toString());
 
                     if (dateStr != null && amount != null) {
-                        int monthIndex = Integer.parseInt(dateStr.split("-")[1]) - 1;
-                        monthlyExpenses[monthIndex] += amount;
+                        try {
+                            String[] parts = dateStr.split("-");
+                            int year = Integer.parseInt(parts[0]);
+                            int monthIndex = Integer.parseInt(parts[1]) - 1; // 0-based
+
+                            if (isMonthly != null && isMonthly) {
+                                // Recurring monthly expense: add to all months from start month onward
+                                if (year == currentYear) {
+                                    for (int i = monthIndex; i < 12; i++) {
+                                        monthlyExpenses[i] += amount;
+                                    }
+                                } else if (year < currentYear) {
+                                    for (int i = 0; i < 12; i++) {
+                                        monthlyExpenses[i] += amount;
+                                    }
+                                }
+                                // If future recurring (year > current), skip
+                            } else {
+                                // One-time expense for this month/year only
+                                if (year == currentYear) {
+                                    monthlyExpenses[monthIndex] += amount;
+                                }
+                            }
+                        } catch (Exception e) {
+                            Log.e("YearlySummary", "Expense date parse error: " + e.getMessage());
+                        }
                     }
                 }
 
@@ -135,8 +161,16 @@ public class YearlySummary extends AppCompatActivity {
                             Log.d("FirebaseCheck", "Income snapshot: " + snapshot.toString());
 
                             if (dateStr != null && amount != null) {
-                                int monthIndex = Integer.parseInt(dateStr.split("-")[1]) - 1;
-                                monthlyIncomes[monthIndex] += amount;
+                                try {
+                                    String[] parts = dateStr.split("-");
+                                    int year = Integer.parseInt(parts[0]);
+                                    int monthIndex = Integer.parseInt(parts[1]) - 1;
+                                    if (year == currentYear) {
+                                        monthlyIncomes[monthIndex] += amount;
+                                    }
+                                } catch (Exception e) {
+                                    Log.e("YearlySummary", "Income date parse error: " + e.getMessage());
+                                }
                             }
                         }
                         // Error Checking

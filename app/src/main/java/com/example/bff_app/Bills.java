@@ -127,10 +127,23 @@ public class Bills extends AppCompatActivity {
             int c = ContextCompat.getColor(this, chartColors[i % chartColors.length]);
             colors.add(c);
         }
+
         // Sets up pie chart
         PieDataSet set = new PieDataSet(entries, "Expenses");
         set.setColors(colors);
         pieChart.setData(new PieData(set));
+
+        // Determine text color based on night mode
+        int legendTextColor;
+        int uiMode = getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK;
+        if (uiMode == android.content.res.Configuration.UI_MODE_NIGHT_YES) {
+            legendTextColor = ContextCompat.getColor(this, android.R.color.white); // Or a custom color
+        } else {
+            legendTextColor = ContextCompat.getColor(this, android.R.color.black); // Or a custom color
+        }
+
+        // Set legend text color
+        pieChart.getLegend().setTextColor(legendTextColor);
         pieChart.invalidate(); // refresh
     }
     // class to adapt data to the UI

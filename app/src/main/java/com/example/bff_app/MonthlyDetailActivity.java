@@ -17,17 +17,19 @@ import com.google.firebase.database.*;
 
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class MonthlyDetailActivity extends AppCompatActivity {
     private TextView monthLabel, totalExpenses, totalIncome, goalsText;
     private RecyclerView expensesList;
-    private int monthIndex;
+    private int monthIndex, selectedYear;
     private double totalExp = 0, totalInc = 0;
     private final List<TransactionItem> combinedTransactions = new ArrayList<>();
     private TransactionAdapter transactionAdapter;
     private String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
             "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+    int currentYear = Calendar.getInstance().get(Calendar.YEAR);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,9 @@ public class MonthlyDetailActivity extends AppCompatActivity {
 
         monthIndex = getIntent().getIntExtra("monthIndex", 0);
         monthLabel.setText(getMonthName(monthIndex));
+
+        selectedYear = Calendar.getInstance().get(Calendar.YEAR);
+        monthLabel.setText(getMonthName(monthIndex) + " " + selectedYear);
 
         ImageButton backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(v -> finish());// finishes activity and returns to YearlySummary
@@ -74,9 +79,14 @@ public class MonthlyDetailActivity extends AppCompatActivity {
 
                     try {
                         String[] parts = expense.getExpenseDate().split("-");
+                        int entryYear = Integer.parseInt(parts[0]);
                         int entryMonth = Integer.parseInt(parts[1]) - 1;
 
-                        if (entryMonth == monthIndex) {
+                        boolean isCurrentMonth = (entryYear == selectedYear && entryMonth == monthIndex);
+                        boolean isRecurringMonthly = expense.getIsMonthly(); // Assuming this flag exists
+                        boolean isBeforeCurrentMonth = entryYear < selectedYear || (entryYear == selectedYear && entryMonth < monthIndex);
+
+                        if (isCurrentMonth || (isRecurringMonthly && isBeforeCurrentMonth)) {
                             combinedTransactions.add(expense);
                             totalExp += expense.getAmount();
                         }
@@ -143,9 +153,10 @@ public class MonthlyDetailActivity extends AppCompatActivity {
 
                     try {
                         String[] parts = income.getIncomeDate().split("-");
+                        int entryYear = Integer.parseInt(parts[0]);
                         int entryMonth = Integer.parseInt(parts[1]) - 1;
 
-                        if (entryMonth == monthIndex) {
+                        if (entryYear == selectedYear && entryMonth == monthIndex) {
                             combinedTransactions.add(income);
                             totalInc += income.getAmount();
                         }
