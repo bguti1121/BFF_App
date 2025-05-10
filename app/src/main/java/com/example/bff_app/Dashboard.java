@@ -111,7 +111,11 @@ public class Dashboard extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             User userData = snapshot.getValue(User.class);
                             if (userData != null) {
-                                nameText.setText("Welcome, " + userData.name + "!"); // Displays Welcome (username)!
+                                if (userData.name != null) {
+                                    nameText.setText("Welcome, " + String.valueOf(userData.name) + "!");
+                                } else {
+                                    nameText.setText("Welcome!");
+                                }
                                 userRef = FirebaseDatabase.getInstance().getReference("Users")
                                         .child(user.getUid())
                                         .child("expenses"); // Accesses expenses stored in database

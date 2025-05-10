@@ -23,4 +23,11 @@ public class User {
         this.totalSaved = 0.0;
         this.spendingCategories = new HashMap<>();
     }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

@@ -31,7 +31,7 @@
         android:layout_marginTop="20dp"
         android:layout_below="@id/backButton"
         android:text="@string/tracking_tracking"
-        android:textColor="#1F1F1F"
+        android:textColor="@color/black"
         android:textSize="22sp"
         android:textStyle="bold" />
 
