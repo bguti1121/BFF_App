@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="8dp"
+    android:paddingHorizontal="12dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:gravity="center_vertical"
+    android:weightSum="100">
+
+    <!-- TextViews contain placeholder texts and color that will be overridden by the actual data -->
+    <TextView
+        android:id="@+id/trackingCategory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="25"
+        android:text="@string/groceries_tracking"
+        android:textColor="@color/barTextColor"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/trackingAmount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="20"
+        android:gravity="end"
+        android:text="@string/_45_00_tracking"
+        android:textColor="@color/expense_bar_color"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/trackingDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="35"
+        android:gravity="end"
+        android:text="@string/apr_25_tracking"
+        android:textColor="@color/barTextColor"
+        android:textSize="14sp" />
+</LinearLayout>

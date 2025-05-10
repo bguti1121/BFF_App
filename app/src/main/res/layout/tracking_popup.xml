@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- container for popup. background is a placeholder (red for expense and green for income) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/popup_card"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:elevation="8dp"
+    android:background="@drawable/expense_popup" >
+
+    <!-- category text is a placeholder -->
+    <TextView
+        android:id="@+id/category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/category_popup"
+        android:textColor="#000000"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <!--date text is a placeholder -->
+    <TextView
+        android:id="@+id/popup_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/may_7_2025_popup"
+        android:textSize="12sp"
+        android:textColor="#000000" />
+
+</LinearLayout>

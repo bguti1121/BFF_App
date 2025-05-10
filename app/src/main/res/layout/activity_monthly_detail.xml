@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:layout_height="match_parent">
+
+    <!-- Back Button -->
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="start"
+        android:background="@null"
+        android:contentDescription="@string/back_button_monthly_detail"
+        android:scaleType="fitXY"
+        style="?android:attr/buttonBarStyle"
+        android:src="@drawable/ic_back_arrow" />
+    <!-- Month Label -->
+    <TextView
+        android:id="@+id/monthLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/january_month_label"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#2E7D32"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Totals -->
+    <TextView
+        android:id="@+id/totalExpenses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/total_expenses_0_00_monthly_detail"
+        android:textSize="18sp"
+        android:textColor="#D32F2F"
+        android:layout_marginBottom="4dp" />
+
+    <TextView
+        android:id="@+id/totalIncome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/total_income_0_00_monthly_detail"
+        android:textSize="18sp"
+        android:textColor="#388E3C"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Goals -->
+    <TextView
+        android:id="@+id/goalsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/goal_save_200_monthly_detail"
+        android:textSize="16sp"
+        android:textColor="#555"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Expense RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/expensesRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingTop="8dp" />
+</LinearLayout>

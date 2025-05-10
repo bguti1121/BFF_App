@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="teal_700">#00BCD4</color>
+    <color name="graphBlue">#0C3781</color>
+    <color name="budgetRed">#C01004</color>
+    <color name="bgGreen">#4CAF50</color>
+    <color name="purple_500">#6C0AC5</color>
+
+    <color name="percentageText">#333333</color> <!-- Color for percentages on bills -->
+    <color name="barTextColor">#222222</color>  <!-- Color for bar chart yearlySummary -->
+    <color name="transaction_expense">#D32F2F</color> <!-- Red for expenses -->
+    <color name="transaction_income">#388E3C</color> <!-- Green for incomes -->
+    <color name="bg_expense">#FFEBEE</color> <!-- Light red background -->
+    <color name="bg_income">#E8F5E9</color>  <!-- Light green background -->
+
+    <!-- Pie chart colors -->
+    <color name="butter">#FFD54F</color>"
+    <color name="pink">#F06292</color>
+    <color name="lighterBlue">#64B5F6</color>
+    <color name="lavender">#BA68C8</color>
+    <color name="peach">#FF8A65</color>
+    <color name="lightBlue">#4FC3F7</color>
+    <color name="lightGreen">#81C784</color>
+    <color name="beige">#FBC02D</color>
+
+    <color name="bannerGreen">#A2C38C</color>
+    <color name="DarkGreen">#2C3B23</color>
+
+    <!-- Button background and text colors -->
+    <color name="button_background">#86B067</color>
+    <color name="button_text">#000000</color>
+
+    <color name="forestGreen">#466B3D</color>
+    <color name="soft">#DFF2D8</color>
+
+    <!-- Bar Graph colors -->
+    <color name="income_bar_color">#A8C686</color>
+    <color name="expense_bar_color">#B06786</color>
+
+    <color name="income_popup_color">#E6F2D9</color>
+    <color name="expense_popup_color">#F6DDE6</color>
+
+    <color name="login_blue">#007BFF</color>
+
+</resources>

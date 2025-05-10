@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="?android:attr/windowBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".forgotPass">
+
+    <!-- Top green banner -->
+    <View
+        android:id="@+id/topBanner"
+        android:layout_width="0dp"
+        android:layout_height="90dp"
+        android:background="#ADCAAD"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHeight_percent="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+    <!-- Logo TextView -->
+    <TextView
+        android:id="@+id/logoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/logofont"
+        android:gravity="center"
+        android:shadowColor="#80000000"
+        android:shadowDx="4"
+        android:shadowDy="4"
+        android:shadowRadius="8"
+        android:text="@string/b_f_f_forgot_pass"
+        android:textColor="#055B05"
+        android:textSize="70sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/topBanner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/topBanner"
+        app:layout_constraintVertical_bias="0.888" />
+    <!-- Form content inside a LinearLayout -->
+    <LinearLayout
+        android:id="@+id/formSection"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:orientation="vertical"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topBanner">
+
+        <TextView
+            android:text="@string/forgot_your_password_"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:gravity="start"
+            android:layout_marginRight = "5dp"
+            android:layout_marginLeft = "5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="@string/enter_your_email_to_receive_a_reset_link_"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            android:gravity="start"
+            android:layout_marginRight = "5dp"
+            android:layout_marginLeft = "5dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop = "10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight = "5dp"
+            android:layout_marginLeft = "5dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email"
+                android:hint="@string/email_forgot_pass"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/resetPass"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#ADCAAD"
+            android:elevation="28dp"
+            android:text="@string/send_email_"
+            android:textColor="#043A04" />
+
+        <Button
+            android:id="@+id/backToLogin"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:backgroundTint="#ADCAAD"
+            android:gravity="center"
+            android:text="@string/back_to_login_"
+            android:textColor="#043A04"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

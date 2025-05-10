@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="?android:attr/windowBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Register">
+
+    <!-- Top green banner -->
+    <View
+        android:id="@+id/topBanner"
+        android:layout_width="0dp"
+        android:layout_height="90dp"
+        android:background="@color/bannerGreen"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHeight_percent="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+    <!-- Logo TextView -->
+    <TextView
+        android:id="@+id/logoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/logofont"
+        android:gravity="center"
+        android:shadowColor="#80000000"
+        android:shadowDx="4"
+        android:shadowDy="4"
+        android:shadowRadius="8"
+        android:text="@string/b_f_f_2"
+        android:textColor="@color/DarkGreen"
+        android:textSize="70sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/topBanner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/topBanner"
+        app:layout_constraintVertical_bias="0.888" />
+    <!-- Form content inside a LinearLayout -->
+    <LinearLayout
+        android:id="@+id/formSection"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:orientation="vertical"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topBanner">
+        <!-- Extra TextView -->
+        <TextView
+            android:id="@+id/extraText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/extra_text"
+            android:textSize="40sp"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:fontFamily="@font/bwana"
+            />
+        <LinearLayout
+            android:id="@+id/yearlySummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="15dp">
+
+            <ImageView
+                android:id="@+id/yearlyIcon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="0dp"
+                android:contentDescription="@string/username_icon"
+                android:src="@drawable/ic_yearly"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/yearlyLabel"
+                android:layout_width="233dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@string/yearly_summary_label"
+                android:textColor="@color/button_text"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@id/yearlyIcon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/yearlyChevron"
+                android:layout_width="54dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_chevron"
+                app:layout_constraintBottom_toBottomOf="@id/yearlyIcon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/yearlyIcon" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="8dp">
+
+            <ImageView
+                android:id="@+id/settingsIcon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="0dp"
+                android:contentDescription="@string/settings"
+                android:src="@drawable/ic_settings"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/settingsLabel"
+                android:layout_width="235dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@string/settings"
+                android:textColor="@color/button_text"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@id/yearlyIcon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/settingsChevron"
+                android:layout_width="54dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_chevron"
+                app:layout_constraintBottom_toBottomOf="@id/yearlyIcon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/yearlyIcon" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="8dp">
+
+            <ImageView
+                android:id="@+id/logoutIcon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="0dp"
+                android:contentDescription="@string/logout"
+                android:src="@drawable/ic_logout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/logoutLabel"
+                android:layout_width="235dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@string/logout_settings"
+                android:textColor="@color/button_text"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@id/yearlyIcon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/logoutChevron"
+                android:layout_width="54dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_chevron"
+                app:layout_constraintBottom_toBottomOf="@id/yearlyIcon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/yearlyIcon" />
+        </LinearLayout>
+    </LinearLayout>
+    <!-- Navigation Bar layout -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/dashboard_btn"
+        android:layout_width="103dp"
+        android:layout_height="102dp"
+        android:layout_marginBottom="4dp"
+        android:background="@null"
+        android:drawableTop="@drawable/ic_dashboard"
+        android:gravity="center"
+        android:drawablePadding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/summary_btn"
+        android:layout_width="103dp"
+        android:layout_height="102dp"
+        android:layout_marginBottom="4dp"
+        android:background="@null"
+        android:drawableTop="@drawable/ic_summary"
+        android:gravity="center"
+        android:drawablePadding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/goals_btn"
+        android:layout_width="103dp"
+        android:layout_height="102dp"
+        android:layout_marginBottom="4dp"
+        android:background="@null"
+        android:drawableTop="@drawable/ic_goals"
+        android:gravity="center"
+        android:drawablePadding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.665"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/more_btn"
+        android:layout_width="103dp"
+        android:layout_height="102dp"
+        android:layout_marginBottom="4dp"
+        android:background="@null"
+        android:drawableTop="@drawable/ic_more"
+        android:gravity="center"
+        android:drawablePadding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.999"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

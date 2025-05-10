@@ -1,0 +1,41 @@
+<resources>
+    <color name="black">#FFFFFFFF</color> <!-- white text on dark -->
+    <color name="white">#FF000000</color> <!-- dark background -->
+    <color name="teal_700">#00ACC1</color> <!-- slightly dimmer blue -->
+    <color name="graphBlue">#7CA6E5</color> <!-- soft blue for dark -->
+    <color name="budgetRed">#FF8A80</color> <!-- lighter red for contrast -->
+
+    <color name="percentageText">#FFFFFF</color>
+    <color name="barTextColor">#FFFFFF</color>
+    <color name="transaction_expense">#EF9A9A</color> <!-- Lighter red for dark bg -->
+    <color name="transaction_income">#A5D6A7</color> <!-- Lighter green for dark bg -->
+    <color name="bg_expense">#3B1E1E</color> <!-- Dark maroon tint -->
+    <color name="bg_income">#1E3B1E</color>  <!-- Dark green tint -->
+
+    <!-- Pie chart colors in night mode -->
+    <color name="butter">#FFCA28</color>
+    <color name="pink">#EC407A</color>
+    <color name="lighterBlue">#42A5F5</color>
+    <color name="lavender">#AB47BC</color>
+    <color name="peach">#FF7043</color>
+    <color name="lightBlue">#29B6F6</color>
+    <color name="lightGreen">#66BB6A</color>
+    <color name="beige">#F9A825</color>
+
+    <color name="bannerGreen">#4A5E3E</color>   <!-- Muted, darker green for dark backgrounds -->
+    <color name="DarkGreen">#D3E5C6</color>     <!-- A light, pastel green for text/icons on dark -->
+
+    <!-- Button background and text colors -->
+    <color name="button_background">#558A4D</color> <!-- a darker shade -->
+    <color name="button_text">#FFFFFF</color>
+
+    <color name="forestGreen">#A6D7A0</color> <!-- Lighter tone for contrast on dark background -->
+    <color name="soft">#324A2E</color>        <!-- Muted dark green to preserve the soft tone -->
+
+    <!-- Bar Graph Colors - Night Mode -->
+    <color name="income_bar_color">#6FA16C</color>   <!-- Desaturated version of original -->
+    <color name="expense_bar_color">#C2859C</color>  <!-- Softer, lighter for visibility on dark -->
+
+    <color name="income_popup_color">#3E5436</color>   <!-- Darker green for popup -->
+    <color name="expense_popup_color">#5A3D4A</color>  <!-- Dark mauve tone for contrast -->
+</resources>

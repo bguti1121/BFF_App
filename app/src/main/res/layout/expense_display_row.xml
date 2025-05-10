@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="12dp"
+    android:gravity="center_vertical"
+    android:baselineAligned="false">
+
+    <!-- category input -->
+    <EditText
+        android:id="@+id/expenseCategory"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:hint="@string/expense_category_expense_display"
+        android:inputType="text"
+        android:backgroundTint="#CCCCCC"
+        android:padding="8dp" />
+
+    <!-- amount input -->
+    <EditText
+        android:id="@+id/expenseAmount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:hint="@string/amount"
+        android:inputType="numberDecimal"
+        android:layout_marginStart="8dp"
+        android:backgroundTint="#CCCCCC"
+        android:padding="8dp" />
+
+    <!-- progressBar with percent -->
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.2"
+        android:layout_marginStart="12dp">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:max="100"
+            android:progress="0"
+            android:layout_marginTop="8dp" />
+
+        <!-- black outline (slightly bigger) -->
+        <TextView
+            android:id="@+id/progressOutline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/progressOutline_text"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_centerInParent="true" />
+
+        <!-- white text -->
+        <TextView
+            android:id="@+id/progressPercentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/progressPercentage_text"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_centerInParent="true" />
+
+    </RelativeLayout>
+</LinearLayout>

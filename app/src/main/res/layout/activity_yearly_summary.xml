@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="?android:attr/windowBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".YearlySummary">
+
+    <!-- Top green banner -->
+    <View
+        android:id="@+id/topBanner"
+        android:layout_width="0dp"
+        android:layout_height="90dp"
+        android:background="@color/bannerGreen"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHeight_percent="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+    <!-- Logo TextView -->
+    <TextView
+        android:id="@+id/logoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/logofont"
+        android:gravity="center"
+        android:shadowColor="#80000000"
+        android:shadowDx="4"
+        android:shadowDy="4"
+        android:shadowRadius="8"
+        android:text="@string/b_f_f_2"
+        android:textColor="@color/DarkGreen"
+        android:textSize="70sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/topBanner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/topBanner"
+        app:layout_constraintVertical_bias="0.888" />
+    <!-- Form content inside a LinearLayout -->
+    <LinearLayout
+        android:id="@+id/formSection"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:orientation="vertical"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topBanner">
+        <!-- Back Button -->
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="start"
+            android:background="@null"
+            android:contentDescription="@string/back_button_monthly_detail"
+            android:scaleType="fitXY"
+            style="?android:attr/buttonBarStyle"
+            android:src="@drawable/ic_back_arrow" />
+        <TextView
+            android:id="@+id/yearlySummaryText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/bwana"
+            android:text="@string/yearly_summary_text"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="35sp"
+            android:textStyle="bold" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            tools:ignore="UselessParent">
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/yearlyBarChart"
+                android:layout_width="1500dp"
+                android:layout_height="500dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp" />
+        </HorizontalScrollView>
+    </LinearLayout>
+    <!-- Navigation Bar layout -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/dashboard_btn"
+        android:layout_width="103dp"
+        android:layout_height="102dp"
+        android:layout_marginBottom="4dp"
+        android:background="@null"
+        android:drawableTop="@drawable/ic_dashboard"
+        android:gravity="center"
+        android:drawablePadding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/summary_btn"
+        android:layout_width="103dp"
+        android:layout_height="102dp"
+        android:layout_marginBottom="4dp"
+        android:background="@null"
+        android:drawableTop="@drawable/ic_summary"
+        android:gravity="center"
+        android:drawablePadding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/goals_btn"
+        android:layout_width="103dp"
+        android:layout_height="102dp"
+        android:layout_marginBottom="4dp"
+        android:background="@null"
+        android:drawableTop="@drawable/ic_goals"
+        android:gravity="center"
+        android:drawablePadding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.665"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/more_btn"
+        android:layout_width="103dp"
+        android:layout_height="102dp"
+        android:layout_marginBottom="4dp"
+        android:background="@null"
+        android:drawableTop="@drawable/ic_more"
+        android:gravity="center"
+        android:drawablePadding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.999"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

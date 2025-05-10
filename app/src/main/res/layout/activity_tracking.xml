@@ -1,0 +1,94 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/chartScreen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Tracking"
+    android:background="#FAFAFA">
+
+    <!-- Back button -->
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="16dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_back_arrow"/>
+
+    <!-- Header text -->
+    <TextView
+        android:id="@+id/trackingHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/backButton"
+        android:text="@string/tracking_tracking"
+        android:textColor="#1F1F1F"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/popup_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/trackingHeader"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:visibility="gone">
+
+        <include
+            layout="@layout/tracking_popup" />
+    </RelativeLayout>
+
+    <!-- Main content below popup -->
+    <LinearLayout
+        android:id="@+id/mainContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/popup_container"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- CardView holding the bar chart -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardElevation="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardUseCompatPadding="true"
+            app:cardBackgroundColor="#FFFFFF">
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/barChart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:padding="16dp" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Log container with RecyclerView -->
+        <LinearLayout
+            android:id="@+id/logContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@android:color/transparent"
+            android:padding="8dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/trackingLogRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:nestedScrollingEnabled="true"
+                android:scrollbars="vertical" />
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

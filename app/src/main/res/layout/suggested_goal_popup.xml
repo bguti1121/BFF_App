@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginBottom="20dp"
+        android:text="@string/back_suggesteGoal"
+        android:padding="8dp"
+        android:backgroundTint="#A58ADF"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/suggestionTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="200dp"
+        android:text="@string/suggested_goal_Title"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        android:textColor="#000000"
+        android:paddingBottom="12dp"/>
+
+    <TextView
+        android:id="@+id/suggestionMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="200dp"
+        android:text="@string/to_reach_your_goal_by_the_date_you_should_save_xx_per_pay_period"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:paddingBottom="12dp"/>
+
+    <Button
+        android:id="@+id/closePopupBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/close_popup"
+        android:layout_gravity="center" />
+</LinearLayout>

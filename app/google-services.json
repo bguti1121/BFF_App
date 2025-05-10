@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "435545054295",
+    "project_id": "realbff-ee5ad",
+    "storage_bucket": "realbff-ee5ad.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:435545054295:android:e22cf2aaf6885b2f9d1712",
+        "android_client_info": {
+          "package_name": "com.example.bff_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDo4c-K6ATzs2kKOt5uiO_LIrIM7Sp4g5Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

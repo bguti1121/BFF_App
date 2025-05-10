@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="?android:attr/windowBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Summary">
+
+    <!-- Top green banner -->
+    <View
+        android:id="@+id/topBanner"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:background="@color/bannerGreen"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHeight_percent="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+    <!-- Logo TextView -->
+    <TextView
+        android:id="@+id/logoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/logofont"
+        android:gravity="center"
+        android:shadowColor="#80000000"
+        android:shadowDx="4"
+        android:shadowDy="4"
+        android:shadowRadius="8"
+        android:text="@string/b_f_f_2"
+        android:textColor="@color/DarkGreen"
+        android:textSize="70sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/topBanner"
+        app:layout_constraintEnd_toEndOf="@id/topBanner"
+        app:layout_constraintStart_toStartOf="@id/topBanner"
+        app:layout_constraintTop_toTopOf="@id/topBanner"
+        app:layout_constraintVertical_bias="0.888" />
+    <!-- Summary Title -->
+    <TextView
+        android:id="@+id/summary_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/summary_text"
+        android:fontFamily="@font/bwana"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/topBanner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="30dp"
+        android:gravity="center"/>
+    <!-- Form content inside a LinearLayout -->
+    <LinearLayout
+        android:id="@+id/formSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:orientation="vertical"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topBanner">
+        <!-- Bills and tracking buttons -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/billsButton"
+            android:layout_width="match_parent"
+            android:layout_height="213dp"
+            android:backgroundTint="#86B067"
+            android:text="@string/bills_summ"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            app:cornerRadius="16dp"
+            app:icon="@drawable/bills"
+            app:iconGravity="top"
+            app:iconPadding="5dp"
+            app:iconSize="140dp"
+            app:iconTint="@null" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/trackingButton"
+            android:layout_width="match_parent"
+            android:layout_height="213dp"
+            android:backgroundTint="#86B067"
+            android:text="@string/tracking_summ"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            app:cornerRadius="16dp"
+            app:icon="@drawable/tracking2"
+            app:iconGravity="top"
+            app:iconPadding="8dp"
+            app:iconSize="150dp"
+            app:iconTint="@null" />
+    </LinearLayout>
+    <!-- Navigation Bar layout -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/dashboard_btn"
+        android:layout_width="103dp"
+        android:layout_height="102dp"
+        android:layout_marginBottom="4dp"
+        android:background="@null"
+        android:drawableTop="@drawable/ic_dashboard"
+        android:gravity="center"
+        android:drawablePadding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/summary_btn"
+        android:layout_width="103dp"
+        android:layout_height="102dp"
+        android:layout_marginBottom="4dp"
+        android:background="@null"
+        android:drawableTop="@drawable/ic_summary"
+        android:gravity="center"
+        android:drawablePadding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/goals_btn"
+        android:layout_width="103dp"
+        android:layout_height="102dp"
+        android:layout_marginBottom="4dp"
+        android:background="@null"
+        android:drawableTop="@drawable/ic_goals"
+        android:gravity="center"
+        android:drawablePadding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.665"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/more_btn"
+        android:layout_width="103dp"
+        android:layout_height="102dp"
+        android:layout_marginBottom="4dp"
+        android:background="@null"
+        android:drawableTop="@drawable/ic_more"
+        android:gravity="center"
+        android:drawablePadding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.999"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

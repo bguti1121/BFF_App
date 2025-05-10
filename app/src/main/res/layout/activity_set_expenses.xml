@@ -1,0 +1,73 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Top green banner -->
+        <FrameLayout
+            android:id="@+id/topBanner"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:background="#ADCAAD">
+            <!-- Logo TextView -->
+            <TextView
+                android:id="@+id/logoText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/logofont"
+                android:gravity="center"
+                android:shadowColor="#80000000"
+                android:shadowDx="4"
+                android:shadowDy="4"
+                android:shadowRadius="8"
+                android:text="@string/b_f_f_2"
+                android:textColor="#055B05"
+                android:textSize="70sp"
+                android:textStyle="bold" />
+            </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+            <!-- Set up expenses TextView -->
+            <TextView
+                android:text="@string/set_up_your_monthly_expenses"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#292929"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"/>
+            <!-- Expense container -->
+            <LinearLayout
+                android:id="@+id/expenseContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+            <!-- addExpense button -->
+            <Button
+                android:id="@+id/addExpenseBtn"
+                android:text="@string/add_expense_category"
+                android:layout_marginTop="16dp"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"/>
+            <!-- saveExpenses button -->
+            <Button
+                android:id="@+id/saveExpensesBtn"
+                android:text="@string/save_and_continue"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="@color/DarkGreen"
+                android:textColor="#000000"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

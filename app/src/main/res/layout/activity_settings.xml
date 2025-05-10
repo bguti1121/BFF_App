@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="?android:attr/windowBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:clickable="true"
+    tools:context=".Settings">
+
+    <!-- Top green banner -->
+    <View
+        android:id="@+id/topBanner"
+        android:layout_width="0dp"
+        android:layout_height="90dp"
+        android:background="@color/bannerGreen"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHeight_percent="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+    <!-- Logo TextView -->
+    <TextView
+        android:id="@+id/logoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/logofont"
+        android:gravity="center"
+        android:shadowColor="#80000000"
+        android:shadowDx="4"
+        android:shadowDy="4"
+        android:shadowRadius="8"
+        android:text="@string/b_f_f_2"
+        android:textColor="@color/DarkGreen"
+        android:textSize="70sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/topBanner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/topBanner"
+        app:layout_constraintVertical_bias="0.888" />
+    <!-- Form content inside a LinearLayout -->
+    <LinearLayout
+        android:id="@+id/formSection"
+        android:layout_width="366dp"
+        android:layout_height="626dp"
+        android:layout_marginTop="2dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topBanner">
+        <!-- Settings header TextView -->
+        <TextView
+            android:id="@+id/settingsText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/bwana"
+            android:text="@string/settings_text"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+        <LinearLayout
+            android:id="@+id/changeUsernameRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="15dp">
+
+            <ImageView
+                android:id="@+id/userIcon"
+                android:layout_width="43dp"
+                android:layout_height="37dp"
+                android:layout_marginTop="0dp"
+                android:contentDescription="@string/username_icon"
+                android:src="@drawable/ic_person"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/changeUsername"
+                android:layout_width="233dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@string/username"
+                android:textColor="@color/button_text"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@id/userIcon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/userChevron"
+                android:layout_width="48dp"
+                android:layout_height="43dp"
+                android:src="@drawable/ic_chevron"
+                app:layout_constraintBottom_toBottomOf="@id/userIcon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/userIcon" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/changePasswordRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="8dp">
+
+            <ImageView
+                android:id="@+id/passwordIcon"
+                android:layout_width="39dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="0dp"
+                android:contentDescription="@string/update_passwordIcon"
+                android:src="@drawable/ic_password"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/changePassword"
+                android:layout_width="235dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@string/update_password_Label"
+                android:textColor="@color/button_text"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@id/userIcon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/passwordChevron"
+                android:layout_width="54dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_chevron"
+                app:layout_constraintBottom_toBottomOf="@id/userIcon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/userIcon" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/updateEmailRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="8dp">
+
+            <ImageView
+                android:id="@+id/emailIcon"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="0dp"
+                android:contentDescription="@string/update_email_icon"
+                android:src="@drawable/email_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="#86B067" />
+
+
+            <TextView
+                android:id="@+id/updateEmail"
+                android:layout_width="235dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@string/update_email_label"
+                android:textColor="@color/button_text"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@id/userIcon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/emailChevron"
+                android:layout_width="54dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_chevron"
+                app:layout_constraintBottom_toBottomOf="@id/userIcon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/userIcon" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="8dp">
+
+            <ImageView
+                android:id="@+id/darkModeIcon"
+                android:layout_width="39dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="0dp"
+                android:contentDescription="@string/dark_mode_button"
+                android:src="@drawable/ic_darkmode"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/toggleLabel"
+                android:layout_width="235dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@string/night_mode_label"
+                android:textColor="@color/button_text"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@id/userIcon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/darkMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false" />
+        </LinearLayout>
+    </LinearLayout>
+    <!-- Navigation Bar layout -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/dashboard_btn"
+        android:layout_width="103dp"
+        android:layout_height="102dp"
+        android:layout_marginBottom="4dp"
+        android:background="@null"
+        android:drawableTop="@drawable/ic_dashboard"
+        android:gravity="center"
+        android:drawablePadding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/summary_btn"
+        android:layout_width="103dp"
+        android:layout_height="102dp"
+        android:layout_marginBottom="4dp"
+        android:background="@null"
+        android:drawableTop="@drawable/ic_summary"
+        android:gravity="center"
+        android:drawablePadding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/goals_btn"
+        android:layout_width="103dp"
+        android:layout_height="102dp"
+        android:layout_marginBottom="4dp"
+        android:background="@null"
+        android:drawableTop="@drawable/ic_goals"
+        android:gravity="center"
+        android:drawablePadding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.665"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/more_btn"
+        android:layout_width="103dp"
+        android:layout_height="102dp"
+        android:layout_marginBottom="4dp"
+        android:background="@null"
+        android:drawableTop="@drawable/ic_more"
+        android:gravity="center"
+        android:drawablePadding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.999"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

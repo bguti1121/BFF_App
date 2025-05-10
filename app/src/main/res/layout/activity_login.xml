@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:background="@color/bannerGreen"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="15dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login">
+    <!-- Login logo -->
+    <TextView
+        android:fontFamily="@font/logofont"
+        android:text="@string/b_f_f_1"
+        android:textSize="100sp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/DarkGreen"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:layout_width="134dp"
+        android:layout_height="90dp"
+        android:alpha="0.8"
+        android:contentDescription="@string/cat"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/cat_and_coin_sticker_png" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="3dp"
+            android:gravity="center"
+            android:fontFamily="@font/logofont"
+            android:text="@string/budgeting_friend_forever"
+            android:textColor="#2C3B23"
+            android:textSize="29sp"
+            android:textStyle="bold" />
+    </FrameLayout>
+    <!-- Email textbox -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
+            android:hint="@string/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_bg"
+            android:drawableStart="@drawable/email_icon"
+            android:drawablePadding="10dp"
+            android:fontFamily="sans-serif-medium"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/button_text"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:textColorHint="@color/button_text"
+            android:textSize="20sp"
+            android:textStyle="normal"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <!-- Password textbox -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:endIconMode="password_toggle"
+        android:layout_marginBottom="5dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_bg"
+            android:drawableStart="@drawable/lock"
+            android:drawablePadding="10dp"
+            android:fontFamily="sans-serif-medium"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:textColor="@color/button_text"
+            android:textColorHint="@color/button_text"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:textSize="20sp"
+            android:textStyle="normal" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/forgotPasswordText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:textColor="@color/login_blue"
+        android:text="@string/forgot_password"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="244dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="24dp"
+        android:gravity="center"
+        android:backgroundTint="#FFFFFF"
+        android:text="@string/login"
+        android:textColor="@color/button_text"
+        android:textSize="20sp"/>
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/don_t_have_an_account"
+            android:textColor="@color/button_text"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/registerNow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="@string/sign_up_login"
+            android:textColor="@color/login_blue"
+            android:paddingStart="3dp"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,30 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginBottom="8dp">
+
+    <EditText
+        android:id="@+id/IncomeCategory"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:hint="@string/category"
+        android:inputType="text"
+        android:layout_height="48dp"/>
+
+    <EditText
+        android:id="@+id/IncomeAmount"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:hint="@string/amount"
+        android:inputType="numberDecimal"
+        android:layout_marginStart="8dp"
+        android:layout_height="48dp"/>
+    <Button
+        android:id="@+id/deleteIncomeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/delete"
+        android:backgroundTint="#E9E9E9"
+        android:textColor="#000000" />
+</LinearLayout>

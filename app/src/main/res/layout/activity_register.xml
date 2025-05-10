@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?android:attr/windowBackground"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Register">
+
+    <!-- Logo TextView -->
+
+    <FrameLayout
+        android:id="@+id/topBanner"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@color/bannerGreen">
+
+        <TextView
+            android:id="@+id/logoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/logofont"
+            android:layout_gravity="center"
+            android:shadowColor="#80000000"
+            android:shadowDx="4"
+            android:shadowDy="4"
+            android:shadowRadius="8"
+            android:text="@string/b_f_f"
+            android:textColor="@color/DarkGreen"
+            android:textSize="70sp"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="176dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/youthtouch"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:text="@string/welcome"
+            android:textColor="@color/black"
+            android:textSize="55sp"
+            android:textStyle="normal" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="372dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:text="@string/register_and_create_a_free_account_today"
+            android:textSize="23sp"
+            android:textStyle="bold" />
+
+    </FrameLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/edit_text_bg"
+            android:drawableStart="@drawable/ic_name"
+            android:drawablePadding="10dp"
+            android:fontFamily="sans-serif-medium"
+            android:hint="@string/enter_username"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:textSize="20sp"
+            android:textStyle="normal" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/edit_text_bg"
+            android:drawableStart="@drawable/email_icon"
+            android:drawablePadding="10dp"
+            android:fontFamily="sans-serif-medium"
+            android:hint="@string/enter_email_field"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:textSize="20sp"
+            android:textStyle="normal" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:endIconMode="password_toggle"
+        android:layout_marginBottom="5dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_bg"
+            android:drawableStart="@drawable/lock"
+            android:drawablePadding="10dp"
+            android:fontFamily="sans-serif-medium"
+            android:hint="@string/enter_password"
+            android:inputType="textPassword"
+            android:textColor="@color/button_text"
+            android:textColorHint="@color/button_text"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:textSize="20sp"
+            android:textStyle="normal" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#2C3B23"
+        android:elevation="28dp"
+        android:layout_gravity="center"
+        android:text="@string/sign_up"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/loginNow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="@string/back_to_login"
+        android:textColor="#E7527A13"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+</LinearLayout>
+
+

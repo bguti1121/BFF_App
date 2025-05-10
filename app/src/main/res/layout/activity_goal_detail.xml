@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="@string/back_goalDetail"
+            android:padding="8dp"
+            android:backgroundTint="#A58ADF"
+            android:textColor="#000000"
+            android:layout_marginBottom="12dp"/>
+
+        <TextView
+            android:id="@+id/goalTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/goal_laptop_goalDetail"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp"/>
+
+        <TextView
+            android:id="@+id/goalAmountText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/goal_amount_1000_00_goalDetail" />
+
+        <TextView
+            android:id="@+id/amountSavedText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/amount_saved_250_00_goalDetail" />
+
+        <TextView
+            android:id="@+id/amountLeftText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/amount_left_750_00_goalDetail"
+            android:layout_marginBottom="12dp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:progress="25"
+            android:max="100"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:progressTint="#A58ADF"
+            android:layout_marginBottom="20dp" />
+
+        <Button
+            android:id="@+id/completeGoalBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/mark_goal_as_completed_goalDetail"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#90EE90" />
+
+        <Button
+            android:id="@+id/deleteGoalBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/delete_goal_goalDetail"
+            android:backgroundTint="#FF6961" />
+
+    </LinearLayout>
+</ScrollView>
