@@ -311,7 +311,7 @@ public class Dashboard extends AppCompatActivity {
         }
         //Label and data
         BarDataSet dataSet = new BarDataSet(entries, "Expenses");
-        dataSet.setColor(ContextCompat.getColor(Dashboard.this, R.color.purple_500));
+        dataSet.setColors(ColorTemplate.LIBERTY_COLORS);
         dataSet.setValueTextSize(12f);
         BarData barData = new BarData(dataSet);
         barChart.setData(barData);
