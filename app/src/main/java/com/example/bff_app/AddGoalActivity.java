@@ -5,10 +5,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import android.app.AlertDialog;
-import android.view.LayoutInflater;
-import android.view.View; // ← Missing
-import android.widget.TextView; // ← For suggestionMessage
+import android.widget.ImageButton;
+
 import android.app.DatePickerDialog;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -114,31 +112,7 @@ public class AddGoalActivity extends AppCompatActivity {
             });
         });
 
-        Button showSuggestionBtn = findViewById(R.id.showSuggestionBtn);
-
-        showSuggestionBtn.setOnClickListener(v -> {
-            // Inflate custom layout
-            LayoutInflater inflater = LayoutInflater.from(this);
-            View popupView = inflater.inflate(R.layout.suggested_goal_popup, null);
-
-            // Set dynamic suggestion (or static for now)
-            TextView suggestionMessage = popupView.findViewById(R.id.suggestionMessage);
-            suggestionMessage.setText("To reach your goal by the date, you should save $50 per pay period."); // Replace with real calc later
-
-            AlertDialog dialog = new AlertDialog.Builder(this)
-                    .setView(popupView)
-                    .create();
-
-            // Close button
-            Button closeBtn = popupView.findViewById(R.id.closePopupBtn);
-            closeBtn.setOnClickListener(v2 -> dialog.dismiss());
-
-            dialog.show();
-        });
-
-        Button backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(v -> {
-            finish(); // Go back to SavingGoalsActivity
-        });
+        ImageButton back = findViewById(R.id.backButton);
+        back.setOnClickListener(v -> finish());
     }
 }

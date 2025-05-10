@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -131,9 +132,7 @@ public class EditGoalActivity extends AppCompatActivity {
             }
         });
 
-        Button backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(v -> {
-            finish(); // Go back to SavingGoalsActivity
-        });
+        ImageButton back = findViewById(R.id.backButton);
+        back.setOnClickListener(v -> finish());
     }
 }
