@@ -210,6 +210,7 @@
     <string name="suggestion_text">You should save $___ per week.</string>
     <string name="add_income">+Add Income</string>
     <string name="add_expense">+Add Expense</string>
+    <string name="set_up_your_monthly_income">Set up your Monthly Income</string>
 
 
 </resources>
