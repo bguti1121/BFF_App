@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.content.res.ColorStateList;
+import androidx.core.content.ContextCompat;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -66,6 +68,24 @@ public class GoalManager extends RecyclerView.Adapter<GoalManager.GoalViewHolder
         holder.goalDate.setText("Goal Date: " + goal.getTargetDate());
         holder.amountProgressText.setText("Amount Saved: $" + saved + " / $" + total);
         holder.progressBar.setProgress((int) percent);
+
+        if (percent > 100) {
+            // Goal exceeded – maybe unintentional → red
+            holder.progressBar.setProgressTintList(
+                    ColorStateList.valueOf(ContextCompat.getColor(context, R.color.budgetRed))
+            );
+        } else {
+            // In progress or exactly met – forest green
+            holder.progressBar.setProgressTintList(
+                    ColorStateList.valueOf(ContextCompat.getColor(context, R.color.forestGreen))
+            );
+        }
+
+        // Set consistent background track color
+        holder.progressBar.setProgressBackgroundTintList(
+                ColorStateList.valueOf(ContextCompat.getColor(context, R.color.soft))
+        );
+
 
         holder.editGoalButton.setOnClickListener(v -> {
             if (editClickListener != null) {

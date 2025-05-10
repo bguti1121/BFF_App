@@ -205,6 +205,9 @@
     <string name="current_savings">Currently Saved: $0.00/$X.XX</string>
     <string name="enter_amount_to_add">Enter amount to add</string>
     <string name="add_to_saved">Add to Saved</string>
+    <string name="amount_saved">Amount Saved:</string>
+    <string name="goal_amount">Goal Amount: $___</string>
+    <string name="suggestion_text">You should save $___ per week.</string>
 
 
 </resources>

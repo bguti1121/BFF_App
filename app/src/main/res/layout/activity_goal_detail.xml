@@ -53,7 +53,7 @@
                 android:id="@+id/goalTitleText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Goal Name"
+                android:text="@string/goal_name"
                 android:textSize="35sp"
                 android:textStyle="bold"
                 android:gravity="center_horizontal"
@@ -82,14 +82,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Amount Saved"
+                    android:text="@string/amount_saved"
                     android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/goalAmountText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Goal Amount: $___"
+                    android:text="@string/goal_amount"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -98,19 +98,19 @@
                 android:id="@+id/completeGoalBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mark Goal as Completed"
-                android:backgroundTint="#A3F9B9"
-                android:textColor="#000000" />
+                android:text="@string/mark_goal_as_completed_goalDetail"
+                android:backgroundTint="@color/lightGreen"
+                android:textColor="@color/button_text" />
 
             <!-- Delete Button -->
             <Button
                 android:id="@+id/deleteGoalBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Delete Goal"
+                android:text="@string/delete_goal_goalDetail"
                 android:layout_marginTop="12dp"
-                android:backgroundTint="#FF7F7F"
-                android:textColor="#000000" />
+                android:backgroundTint="@color/transaction_expense"
+                android:textColor="@color/button_text" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

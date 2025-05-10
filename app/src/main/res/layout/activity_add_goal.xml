@@ -99,8 +99,8 @@
                 android:text="@string/add_goal"
                 android:layout_gravity="center"
                 android:layout_marginTop="24dp"
-                android:backgroundTint="#86B067"
-                android:textColor="#000000"/>
+                android:backgroundTint="@color/button_background"
+                android:textColor="@color/button_text"/>
 
         </LinearLayout>
     </LinearLayout>

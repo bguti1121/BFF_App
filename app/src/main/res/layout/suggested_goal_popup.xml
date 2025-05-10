@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="0dp">
+    android:backgroundTint="@color/white">
 
     <LinearLayout
         android:orientation="vertical"
@@ -25,10 +25,10 @@
                 android:id="@+id/suggestionMessage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="You should save $___ per week."
+                android:text="@string/suggestion_text"
                 android:textAlignment="center"
                 android:textSize="16sp"
-                android:textColor="#000000"
+                android:textColor="@color/black"
                 android:layout_marginBottom="50dp" />
 
             <Button
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/close_popup"
-                android:backgroundTint="#A58ADF"
-                android:textColor="#FFFFFF"/>
+                android:backgroundTint="@color/button_background"
+                android:textColor="@color/button_text"/>
     </LinearLayout>
 </ScrollView>
