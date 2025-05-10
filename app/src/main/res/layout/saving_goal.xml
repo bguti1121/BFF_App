@@ -44,11 +44,12 @@
             android:id="@+id/amountProgressText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/goal_amount_saved"
             android:textColor="@color/black"
+            android:textStyle="bold"
             android:textSize="14sp"
-            android:layout_marginBottom="4dp" />
+            android:drawablePadding="6dp"
+            android:layout_marginBottom="4dp"/>
+
 
         <ProgressBar
             android:id="@+id/progressBar"

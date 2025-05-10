@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.content.res.ColorStateList;
+import android.text.Html;
 import androidx.core.content.ContextCompat;
 
 import androidx.annotation.NonNull;
@@ -19,7 +20,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.io.Serializable;
 import java.util.List;
 
 public class GoalManager extends RecyclerView.Adapter<GoalManager.GoalViewHolder> {
@@ -65,17 +65,29 @@ public class GoalManager extends RecyclerView.Adapter<GoalManager.GoalViewHolder
         double percent = total > 0 ? (saved / total) * 100 : 0;
 
         holder.goalTitle.setText(goal.getTitle());
+
         holder.goalDate.setText("Goal Date: " + goal.getTargetDate());
-        holder.amountProgressText.setText("Amount Saved: $" + saved + " / $" + total);
+
+        String amountText;
+
+        if (total == 0) {
+            amountText = "Amount Saved: $" + saved + " / $" + total + "  ⚠️ Goal amount is $0";
+        } else {
+            amountText = "Amount Saved: $" + saved + " / $" + total;
+        }
+
+        holder.amountProgressText.setText(amountText);
+        holder.amountProgressText.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0); // clear icon if it was set before
+
         holder.progressBar.setProgress((int) percent);
 
-        if (percent > 100) {
-            // Goal exceeded – maybe unintentional → red
+        if (total == 0 || percent > 100) {
+            // Goal amount is 0 or goal exceeded – treat as warning
             holder.progressBar.setProgressTintList(
                     ColorStateList.valueOf(ContextCompat.getColor(context, R.color.budgetRed))
             );
         } else {
-            // In progress or exactly met – forest green
+            // Normal progress or completed goal
             holder.progressBar.setProgressTintList(
                     ColorStateList.valueOf(ContextCompat.getColor(context, R.color.forestGreen))
             );

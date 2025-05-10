@@ -8,6 +8,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import androidx.core.content.ContextCompat;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -74,5 +77,27 @@ public class GoalDetailActivity extends AppCompatActivity {
         goalAmountText.setText("Goal Amount: $" + total);
         amountSavedText.setText("Amount Saved: $" + saved);
         progressBar.setProgress(progress);
+
+        int percent = total > 0 ? (int) ((saved / total) * 100) : 0;
+
+        progressBar.setProgress(percent);
+
+        if (total == 0 || percent > 100) {
+            // Goal amount is 0 or overfilled — treat as red warning
+            progressBar.setProgressTintList(
+                    ColorStateList.valueOf(ContextCompat.getColor(this, R.color.budgetRed))
+            );
+        } else {
+            // Valid and under/at goal — normal green
+            progressBar.setProgressTintList(
+                    ColorStateList.valueOf(ContextCompat.getColor(this, R.color.forestGreen))
+            );
+        }
+
+
+        progressBar.setProgressBackgroundTintList(
+                ColorStateList.valueOf(ContextCompat.getColor(this, R.color.soft))
+        );
+
     }
 }
