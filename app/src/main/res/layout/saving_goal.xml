@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    card_view:cardBackgroundColor="#86B067"
+    card_view:cardBackgroundColor="@color/button_background"
     card_view:cardCornerRadius="12dp"
     card_view:cardElevation="4dp">
 
@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/goal_name_goal"
-                android:textColor="#1F1F1F"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/goal_date"
-                android:textColor="#1F1F1F"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -46,19 +46,19 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/goal_amount_saved"
-            android:textColor="#1F1F1F"
+            android:textColor="@color/black"
             android:textSize="14sp"
             android:layout_marginBottom="4dp" />
 
         <ProgressBar
             android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleHorizontal"
+            style="@android:style/Widget.ProgressBar.Horizontal"
             android:layout_width="match_parent"
-            android:layout_height="16dp"
-            android:layout_marginBottom="15dp"
-            android:progress="50"
+            android:layout_height="10dp"
             android:max="100"
-            android:progressDrawable="@drawable/progress_bar_thick" />
+            android:progress="0"
+            android:layout_marginBottom="15dp"
+            />
 
 
         <LinearLayout
@@ -68,25 +68,36 @@
             android:gravity="center"
             android:layout_marginTop="12dp">
 
-            <Button
+
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/editGoalButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#00FFFFFF"
+                android:drawableStart="@drawable/edit_pencil_24"
                 android:text="@string/edit_goal"
-                android:textColor="#1F1F1F" />
+                android:drawablePadding="8dp"
+                android:background="@null"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:textSize="15sp" />
+
 
             <Space
-                android:layout_width="12dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/updateSavedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#00FFFFFF"
+                android:background="@null"
+                android:drawableStart="@drawable/add_24"
+                android:drawablePadding="8dp"
                 android:text="@string/add_amount_saved"
-                android:textColor="#1F1F1F" />
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:textSize="15sp"/>
+
         </LinearLayout>
 
     </LinearLayout>

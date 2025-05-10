@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:padding="24dp"
             android:gravity="center_horizontal"
-            android:background="@android:color/white">
+            android:background="@color/white">
 
             <TextView
                 android:id="@+id/goalTitleText"
@@ -80,8 +80,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/add_to_saved"
-                android:backgroundTint="#86B067"
-                android:textColor="#000000"
+                android:backgroundTint="@color/button_background"
+                android:textColor="@color/button_text"
                 android:textStyle="bold"/>
 
             <Button
@@ -90,8 +90,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:text="@string/suggested_goal_suggestionGoal"
-                android:backgroundTint="#86B067"
-                android:textColor="#000000"
+                android:backgroundTint="@color/button_background"
+                android:textColor="@color/button_text"
                 android:textStyle="bold"/>
         </LinearLayout>
     </LinearLayout>
