@@ -1,6 +1,7 @@
 package com.example.bff_app;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -13,7 +14,7 @@ import java.io.Serializable;
 
 public class GoalDetailActivity extends AppCompatActivity {
 
-    TextView goalTitleText, goalAmountText, amountSavedText, amountLeftText;
+    TextView goalTitleText, goalAmountText, amountSavedText;
     ProgressBar progressBar;
     Button completeGoalBtn, deleteGoalBtn;
 
@@ -28,7 +29,6 @@ public class GoalDetailActivity extends AppCompatActivity {
         goalTitleText = findViewById(R.id.goalTitleText);
         goalAmountText = findViewById(R.id.goalAmountText);
         amountSavedText = findViewById(R.id.amountSavedText);
-        amountLeftText = findViewById(R.id.amountLeftText);
         progressBar = findViewById(R.id.progressBar);
         completeGoalBtn = findViewById(R.id.completeGoalBtn);
         deleteGoalBtn = findViewById(R.id.deleteGoalBtn);
@@ -38,16 +38,23 @@ public class GoalDetailActivity extends AppCompatActivity {
 
         if (goal != null) {
             displayGoalDetails(goal);
+        } else {
+            Toast.makeText(this, "Goal is null", Toast.LENGTH_SHORT).show();
         }
 
+
         completeGoalBtn.setOnClickListener(v -> {
-            Toast.makeText(this, "Goal marked as completed!", Toast.LENGTH_SHORT).show();
-            // Optional: simulate status update or disable UI
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("completedGoal", goal); // ✅ different key
+            setResult(RESULT_OK, resultIntent);
+            Log.d("GoalDetailActivity", "Complete button clicked");
+
+            finish();
         });
 
         deleteGoalBtn.setOnClickListener(v -> {
             Intent resultIntent = new Intent();
-            resultIntent.putExtra("deletedGoal", (Serializable) goal);
+            resultIntent.putExtra("deletedGoal", goal);
             setResult(RESULT_OK, resultIntent);
             finish();
         });
@@ -62,12 +69,11 @@ public class GoalDetailActivity extends AppCompatActivity {
         double saved = goal.getAmountSaved();
         double total = goal.getAmountGoal();
         double left = Math.max(total - saved, 0);
-        int progress = (int) ((saved / total) * 100);
+        int progress = total > 0 ? (int) ((saved / total) * 100) : 0;
 
-        goalTitleText.setText("Goal: " + goal.getTitle());
+        goalTitleText.setText(goal.getTitle());
         goalAmountText.setText("Goal Amount: $" + total);
         amountSavedText.setText("Amount Saved: $" + saved);
-        amountLeftText.setText("Amount Left: $" + left);
         progressBar.setProgress(progress);
     }
 }
