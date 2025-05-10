@@ -1,54 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:gravity="center_horizontal"
-    android:background="@android:color/white">
+    android:padding="0dp">
 
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:text="@string/back_button"
-        android:backgroundTint="#D0C3F9"
-        android:textColor="#000000"
-        android:layout_marginBottom="16dp" />
-
-    <TextView
-        android:id="@+id/goalTitleText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/goal_name"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="16dp" />
-
-    <TextView
-        android:id="@+id/currentSavedText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/current_savings"
-        android:textSize="16sp"
-        android:layout_marginBottom="32dp" />
-
-    <EditText
-        android:id="@+id/addAmountInput"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/enter_amount_to_add"
-        android:inputType="numberDecimal"
-        android:layout_marginBottom="24dp" />
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/addAmountBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/add_to_saved"
-        android:backgroundTint="#A3F9B9"
-        android:textColor="#000000"
-        android:textStyle="bold"/>
-</LinearLayout>
+        <!-- Top green banner -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:background="@color/bannerGreen">
+
+            <TextView
+                android:id="@+id/logoText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/logofont"
+                android:text="@string/b_f_f_2"
+                android:textSize="70sp"
+                android:textStyle="bold"
+                android:textColor="@color/DarkGreen"/>
+        </FrameLayout>
+
+        <!-- Back arrow -->
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="start"
+            android:layout_margin="12dp"
+            android:background="@null"
+            android:contentDescription="@string/back_button"
+            android:scaleType="fitXY"
+            style="?android:attr/buttonBarStyle"
+            android:src="@drawable/ic_back_arrow"/>
+
+        <!-- Content area -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="24dp"
+            android:gravity="center_horizontal"
+            android:background="@android:color/white">
+
+            <TextView
+                android:id="@+id/goalTitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/goal_name"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:id="@+id/currentSavedText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/current_savings"
+                android:textSize="16sp"
+                android:layout_marginBottom="32dp" />
+
+            <EditText
+                android:id="@+id/addAmountInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_amount_to_add"
+                android:inputType="numberDecimal"
+                android:layout_marginBottom="24dp" />
+
+            <Button
+                android:id="@+id/addAmountBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/add_to_saved"
+                android:backgroundTint="#86B067"
+                android:textColor="#000000"
+                android:textStyle="bold"/>
+
+            <Button
+                android:id="@+id/showSuggestionBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/suggested_goal_suggestionGoal"
+                android:backgroundTint="#86B067"
+                android:textColor="#000000"
+                android:textStyle="bold"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -3,6 +3,7 @@ package com.example.bff_app;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,10 +60,8 @@ public class GoalDetailActivity extends AppCompatActivity {
             finish();
         });
 
-        Button backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(v -> {
-            finish(); // Go back to SavingGoalsActivity
-        });
+        ImageButton back = findViewById(R.id.backButton);
+        back.setOnClickListener(v -> finish());
     }
 
     private void displayGoalDetails(Goal goal) {

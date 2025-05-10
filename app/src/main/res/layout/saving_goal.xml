@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
+    card_view:cardBackgroundColor="#86B067"
     card_view:cardCornerRadius="12dp"
     card_view:cardElevation="4dp">
 
@@ -26,6 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/goal_name_goal"
+                android:textColor="#1F1F1F"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -34,8 +36,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/goal_date"
-                android:textSize="16sp"
-                android:textColor="#666666" />
+                android:textColor="#1F1F1F"
+                android:textSize="16sp" />
         </LinearLayout>
 
         <TextView
@@ -44,6 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="@string/goal_amount_saved"
+            android:textColor="#1F1F1F"
             android:textSize="14sp"
             android:layout_marginBottom="4dp" />
 
@@ -69,7 +72,9 @@
                 android:id="@+id/editGoalButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/edit_goal" />
+                android:backgroundTint="#00FFFFFF"
+                android:text="@string/edit_goal"
+                android:textColor="#1F1F1F" />
 
             <Space
                 android:layout_width="12dp"
@@ -79,7 +84,9 @@
                 android:id="@+id/updateSavedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/add_amount_saved" />
+                android:backgroundTint="#00FFFFFF"
+                android:text="@string/add_amount_saved"
+                android:textColor="#1F1F1F" />
         </LinearLayout>
 
     </LinearLayout>

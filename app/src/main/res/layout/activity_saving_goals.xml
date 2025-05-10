@@ -71,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
-        android:backgroundTint="#65A938"
+        android:backgroundTint="#86B067"
         android:fontFamily="sans-serif"
         android:text="@string/add_goal_button"
         android:textColor="#055B05"
