@@ -208,6 +208,8 @@
     <string name="amount_saved">Amount Saved:</string>
     <string name="goal_amount">Goal Amount: $___</string>
     <string name="suggestion_text">You should save $___ per week.</string>
+    <string name="add_income">+Add Income</string>
+    <string name="add_expense">+Add Expense</string>
 
 
 </resources>

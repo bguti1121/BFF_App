@@ -90,7 +90,29 @@
                 android:layout_height="match_parent"
                 android:nestedScrollingEnabled="true"
                 android:scrollbars="vertical" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/add_buttons_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="12dp">
 
+            <Button
+                android:id="@+id/addExpenseBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_expense"
+                android:backgroundTint="@color/button_background"/>
+
+            <Button
+                android:id="@+id/addIncomeBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_income"
+                android:backgroundTint="@color/button_background"
+                android:layout_marginStart="16dp" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -90,6 +91,8 @@ public class Tracking extends AppCompatActivity {
         popupContainer = findViewById(R.id.popup_container);
         categoryText = findViewById(R.id.category);
         dateText = findViewById(R.id.popup_date);
+        Button addExpenseBtn = findViewById(R.id.addExpenseBtn);
+        Button addIncomeBtn = findViewById(R.id.addIncomeBtn);
 
         // Sets up RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -101,6 +104,15 @@ public class Tracking extends AppCompatActivity {
         backButton.setOnClickListener(v -> {
             startActivity(new Intent(Tracking.this, Summary.class));
             finish();
+        });
+        addExpenseBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(Tracking.this, EditExpenses.class);
+            startActivity(intent);
+        });
+
+        addIncomeBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(Tracking.this, EditIncomes.class);
+            startActivity(intent);
         });
 
         // Handles bar chart clicks
