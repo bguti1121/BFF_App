@@ -152,7 +152,7 @@
     <string name="day_goalsDay">Day</string>
     <string name="year_goalYear">Year</string>
     <string name="add_confirmGoal">Add</string>
-    <string name="suggested_goal_suggestionGoal">Suggested Goal</string>
+    <string name="suggested_goal_suggestionGoal">*Suggested Add Amount*</string>
     <string name="back_suggesteGoal">Back</string>
     <string name="suggested_goal_Title">Suggested Goal</string>
     <string name="to_reach_your_goal_by_the_date_you_should_save_xx_per_pay_period">To reach your goal by the date, you should save $XX per pay period.</string>
@@ -202,7 +202,7 @@
     <string name="goal_date">Goal Date: XX/XX/XX</string>
     <string name="goal_amount_saved">Amount Saved: $0.00 / $X.XX</string>
     <string name="add_amount_saved">Add Amount Saved</string>
-    <string name="current_savings">Currently Saved: $0.00</string>
+    <string name="current_savings">Currently Saved: $0.00/$X.XX</string>
     <string name="enter_amount_to_add">Enter amount to add</string>
     <string name="add_to_saved">Add to Saved</string>
 
