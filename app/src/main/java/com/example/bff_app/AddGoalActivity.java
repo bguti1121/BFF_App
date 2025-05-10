@@ -25,11 +25,14 @@ public class AddGoalActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     DatabaseReference userRef;
     String uid;
-    EditText goalNameInput, goalDescriptionInput, goalAmountInput, goalDateInput;
+    EditText goalNameInput, goalAmountInput, goalDateInput;
     Button confirmAddGoalButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add_goal);
 
         mAuth = FirebaseAuth.getInstance();
         uid = mAuth.getCurrentUser().getUid();
@@ -42,11 +45,7 @@ public class AddGoalActivity extends AppCompatActivity {
 
         userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid).child("savinggoals");
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_goal);
-
         goalNameInput = findViewById(R.id.goalNameInput);
-        goalDescriptionInput = findViewById(R.id.goalDescriptionInput);
         goalAmountInput = findViewById(R.id.goalAmountInput);
         goalDateInput = findViewById(R.id.goalDateInput);
         confirmAddGoalButton = findViewById(R.id.confirmAddGoalButton);
@@ -68,7 +67,6 @@ public class AddGoalActivity extends AppCompatActivity {
 
         confirmAddGoalButton.setOnClickListener(v -> {
             String title = goalNameInput.getText().toString();
-            String description = goalDescriptionInput.getText().toString(); // optional
             String amountStr = goalAmountInput.getText().toString();
             String date = goalDateInput.getText().toString();
 
@@ -103,7 +101,7 @@ public class AddGoalActivity extends AppCompatActivity {
                 return;
             }
 
-            Goal newGoal = new Goal(title, goalAmount, saved, userRef.getKey(), description,sdf,date);
+            Goal newGoal = new Goal(title, goalAmount, saved, date);
 
             // Push goal to Firebase
             userRef.push().setValue(newGoal).addOnCompleteListener(task -> {

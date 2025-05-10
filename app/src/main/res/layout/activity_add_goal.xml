@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp">
 
     <LinearLayout
+
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:gravity="center_horizontal">
 
-        <!-- Banner with Logo Inside -->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
@@ -41,78 +42,55 @@
                 android:textSize="70sp"
                 android:textStyle="bold" />
         </FrameLayout>
-        <!-- Back Button -->
+
         <Button
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="@string/back_goal"
+            android:text="Back"
             android:padding="8dp"
             android:backgroundTint="#A58ADF"
-            android:textColor="#000000"
-            android:layout_marginBottom="12dp"/>
+            android:textColor="#000000"/>
 
-        <!-- Goal Title -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/new_goal_goal"
+            android:layout_marginTop="30dp"
+            android:text="New Goal"
             android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="16dp"/>
+            android:textStyle="bold" />
 
-        <!-- Goal Inputs -->
         <EditText
             android:id="@+id/goalNameInput"
-            android:hint="@string/goal_name_goal"
+            android:hint="Goal Name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text" />
-        <!-- Goal Description -->
-        <EditText
-            android:id="@+id/goalDescriptionInput"
-            android:hint="@string/description_goal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minLines="3"
-            android:gravity="top"
-            android:inputType="textMultiLine"
-            android:layout_marginTop="12dp"/>
-        <!-- Goal Amount -->
+
         <EditText
             android:id="@+id/goalAmountInput"
-            android:hint="@string/saving_goal_amount_goal"
+            android:hint="Saving Goal Amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:layout_marginTop="12dp"/>
 
-        <!-- Date Inputs -->
-        <LinearLayout
+        <EditText
+            android:id="@+id/goalDateInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginTop="12dp"
-            android:gravity="center">
+            android:hint="Select Target Date"
+            android:focusable="false"
+            android:clickable="true" />
 
-            <EditText
-                android:id="@+id/goalDateInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:hint="@string/select_target_date_goal"
-                android:focusable="false"
-                android:clickable="true" />
-        </LinearLayout>
-
-        <!-- Buttons -->
         <Button
             android:id="@+id/confirmAddGoalButton"
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/add_confirmGoal"
+            android:text="Add"
             android:backgroundTint="#A58ADF"
             android:textColor="#FFFFFF"/>
 
@@ -120,9 +98,10 @@
             android:id="@+id/showSuggestionBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/suggested_goal_suggestionGoal"
+            android:text="Suggested Goal"
             android:layout_marginTop="12dp"
             android:backgroundTint="#A58ADF"
             android:textColor="#FFFFFF"/>
+
     </LinearLayout>
 </ScrollView>

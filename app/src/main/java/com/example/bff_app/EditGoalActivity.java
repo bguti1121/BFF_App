@@ -22,7 +22,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class EditGoalActivity extends AppCompatActivity {
-    EditText editGoalName, editGoalDescription, editGoalAmount;
+    EditText editGoalName, editGoalAmount;
     Button saveEditedGoalBtn;
     EditText goalDateInput;
     Goal goalToEdit;
@@ -39,7 +39,6 @@ public class EditGoalActivity extends AppCompatActivity {
 
         // Bind views
         editGoalName = findViewById(R.id.editGoalName);
-        editGoalDescription = findViewById(R.id.editGoalDescription);
         editGoalAmount = findViewById(R.id.editGoalAmount);
         goalDateInput = findViewById(R.id.goalDateInput);
         saveEditedGoalBtn = findViewById(R.id.saveEditedGoalBtn);
@@ -68,7 +67,7 @@ public class EditGoalActivity extends AppCompatActivity {
                 Log.d("EditGoalActivity", "Received goal: " + goalToEdit.getTitle());
                 editGoalName.setText(goalToEdit.getTitle());
                 editGoalAmount.setText(String.valueOf(goalToEdit.getAmountGoal()));
-                editGoalDescription.setText("Optional description");
+                goalDateInput.setText(goalToEdit.getTargetDate());
             } else {
                 Log.e("EditGoalActivity", "goalToEdit was null after deserialization");
                 Toast.makeText(this, "Error loading goal data.", Toast.LENGTH_SHORT).show();
