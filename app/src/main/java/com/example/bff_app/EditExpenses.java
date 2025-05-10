@@ -61,12 +61,11 @@ public class EditExpenses extends AppCompatActivity {
             startActivity(intent);
         });
         loadExistingExpenses();
-        addExpenseRow(); // start with one row
-
     }
 
     private void loadExistingExpenses() { //new
         expenseContainer.removeAllViews();
+        String currentMonth = new SimpleDateFormat("yyyy-MM", Locale.getDefault()).format(new Date());
 
         userRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful() && task.getResult() != null) {
@@ -74,14 +73,21 @@ public class EditExpenses extends AppCompatActivity {
                     Expense expense = snapshot.getValue(Expense.class);
                     String expenseId = snapshot.getKey();
 
-                    if (expense != null && expenseId != null) {
+                    if (expense != null && expenseId != null &&
+                            expense.getExpenseDate() != null &&
+                            expense.getExpenseDate().startsWith(currentMonth)) { // Only this month
+
                         View row = LayoutInflater.from(this).inflate(R.layout.expense_row, null);
                         EditText categoryInput = row.findViewById(R.id.expenseCategory);
                         EditText amountInput = row.findViewById(R.id.expenseAmount);
+                        CheckBox monthlyCheckbox = row.findViewById(R.id.checkbox);
 
                         categoryInput.setText(expense.getCategory());
                         amountInput.setText(String.valueOf(expense.getAmount()));
-                        row.setTag(expenseId);
+                        monthlyCheckbox.setChecked(expense.getIsMonthly()); // set checkbox state
+
+                        row.setTag(R.id.expenseIdTag, expenseId);
+                        row.setTag(R.id.expenseDateTag, expense.getExpenseDate());
 
                         Button deleteButton = row.findViewById(R.id.deleteExpenseBtn);
                         deleteButton.setVisibility(View.VISIBLE);
@@ -111,12 +117,7 @@ public class EditExpenses extends AppCompatActivity {
         } else {
             deleteButton.setVisibility(View.GONE);
         }
-        if(checkBox.isChecked()){
-            isMonthly = true;
-        }
-        else{
-            isMonthly = false;
-        }
+        isMonthly = checkBox.isChecked();
 
     }
 
@@ -134,8 +135,14 @@ public class EditExpenses extends AppCompatActivity {
             View row = expenseContainer.getChildAt(i);
             EditText categoryInput = row.findViewById(R.id.expenseCategory);
             EditText amountInput = row.findViewById(R.id.expenseAmount);
+            CheckBox monthlyCheckbox = row.findViewById(R.id.checkbox); // <-- fetch it here
+            boolean isRowMonthly = monthlyCheckbox.isChecked();
             String category = categoryInput.getText().toString().trim();
             String amountStr = amountInput.getText().toString().trim();
+
+            if (category.isEmpty() && amountStr.isEmpty()) {
+                continue; // Completely blank row - skip it
+            }
 
             if (!category.isEmpty() && !amountStr.isEmpty()) {
                 try {
@@ -144,19 +151,17 @@ public class EditExpenses extends AppCompatActivity {
                     String expenseId = (String) row.getTag(R.id.expenseIdTag);
                     String expenseDate = (String) row.getTag(R.id.expenseDateTag);
                     if(expenseId!=null){
-                        Expense updatedExpense = new Expense(amount, category, expenseDate, isMonthly);
+                        Expense updatedExpense = new Expense(amount, category, expenseDate, isRowMonthly);
                         expensesRef.child(expenseId).setValue(updatedExpense);
-
                     }
                     else{
                         String newDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-                        Expense newExpense = new Expense(amount, category, newDate, isMonthly);
+                        Expense newExpense = new Expense(amount, category, newDate, isRowMonthly);
                         expensesRef.push().setValue(newExpense);
                     }
                 } catch (NumberFormatException e) {
                     Log.e("AddExpense", "Invalid amount: " + amountStr);
                 }
-
             }
         }
 

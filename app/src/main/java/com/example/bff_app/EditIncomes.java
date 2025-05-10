@@ -67,19 +67,21 @@ public class EditIncomes extends AppCompatActivity {
         });
 
         loadExistingIncomes();
-        addIncomeRow(); // start with one row
-
     }
 
     private void loadExistingIncomes() { //new
         incomeContainer.removeAllViews();
+
+        // Get current month
+        String currentMonth = new SimpleDateFormat("yyyy-MM", Locale.getDefault()).format(new Date());
+
         userRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful() && task.getResult() != null) {
                 for (DataSnapshot snapshot : task.getResult().getChildren()) {
                     Income income = snapshot.getValue(Income.class);
                     String incomeId = snapshot.getKey();
 
-                    if (income != null && incomeId != null) {
+                    if (income != null && incomeId != null && income.getIncomeDate().startsWith(currentMonth)) {
                         View row = LayoutInflater.from(EditIncomes.this).inflate(R.layout.income_row, null);
                         EditText categoryInput = row.findViewById(R.id.IncomeCategory);
                         EditText amountInput = row.findViewById(R.id.IncomeAmount);
@@ -87,15 +89,13 @@ public class EditIncomes extends AppCompatActivity {
                         categoryInput.setText(income.getCategory());
                         amountInput.setText(String.valueOf(income.getAmount()));
 
-
-                        // Add the row to the container
                         incomeContainer.addView(row);
-                        row.setTag(snapshot.getKey());
+                        row.setTag(incomeId);
 
                         Button deleteButton = row.findViewById(R.id.deleteIncomeBtn);
                         deleteButton.setVisibility(View.VISIBLE);
                         deleteButton.setOnClickListener(v -> {
-                            userRef.child(incomeId).removeValue(); // Delete from DB
+                            userRef.child(incomeId).removeValue();
                             incomeContainer.removeView(row);
                         });
                     }
@@ -152,15 +152,23 @@ public class EditIncomes extends AppCompatActivity {
                     double amount = Double.parseDouble(amountStr);
                     totalIncome += amount;
                     // Saves current date
-                    String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-                    // Create an Income object and push it to Firebase
-                    Income income = new Income(amount, category, date);
                     Object tag = row.getTag(); // Firebase ID if existing
 
                     if (tag != null) {
-                        incomesRef.child(tag.toString()).setValue(income); // Update
+                        // Existing income - retain original date
+                        String incomeId = tag.toString();
+                        incomesRef.child(incomeId).get().addOnSuccessListener(snapshot -> {
+                            Income existingIncome = snapshot.getValue(Income.class);
+                            if (existingIncome != null) {
+                                Income updatedIncome = new Income(amount, category, existingIncome.getIncomeDate());
+                                incomesRef.child(incomeId).setValue(updatedIncome);
+                            }
+                        });
                     } else {
-                        incomesRef.push().setValue(income); // New
+                        // New income - assign today's date
+                        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+                        Income newIncome = new Income(amount, category, date);
+                        incomesRef.push().setValue(newIncome);
                     }
                 } catch (NumberFormatException e) {
                     Log.e("AddIncome", "Invalid income amount: " + amountStr);

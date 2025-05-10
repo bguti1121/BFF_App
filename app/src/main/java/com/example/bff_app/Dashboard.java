@@ -29,12 +29,14 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -209,16 +211,27 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 totalIncome = 0.0;
+                int currentYear = LocalDate.now().getYear();
+                int currentMonth = LocalDate.now().getMonthValue();
+
                 for (DataSnapshot incomeSnapshot : snapshot.getChildren()) {
                     Income income = incomeSnapshot.getValue(Income.class);
                     if (income != null) {
-                        totalIncome += income.getAmount();
+                        try {
+                            int incomeMonth = Integer.parseInt(income.getIncomeDate().substring(5, 7));
+                            int incomeYear = Integer.parseInt(income.getIncomeDate().substring(0, 4));
+                            if (incomeYear == currentYear && incomeMonth == currentMonth) {
+                                totalIncome += income.getAmount();
+                            }
+                        } catch (Exception e) {
+                            Log.e("PARSING_ERROR", "Invalid date format in income: " + income.getIncomeDate());
+                        }
                     }
                 }
 
                 // Update income display
                 incomeAmountDisplay.setText(String.format("$%.2f", totalIncome));
-                updateRemainingBudget();
+                updateRemainingBudget(totalIncome,totalExpenses);
             }
 
             @Override
@@ -231,17 +244,27 @@ public class Dashboard extends AppCompatActivity {
         expenseRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int currentYear = LocalDate.now().getYear();
+                int currentMonth = LocalDate.now().getMonthValue();
                 totalExpenses = 0.0;
                 for (DataSnapshot expenseSnapshot : snapshot.getChildren()) {
                     Expense expense = expenseSnapshot.getValue(Expense.class);
                     if (expense != null) {
-                        totalExpenses += expense.getAmount();
+                        try {
+                            int expenseMonth = Integer.parseInt(expense.getExpenseDate().substring(5, 7));
+                            int expenseYear = Integer.parseInt(expense.getExpenseDate().substring(0, 4));
+                            if (expense.getIsMonthly() || (expenseYear == currentYear && expenseMonth == currentMonth)) {
+                                totalExpenses += expense.getAmount();
+                            }
+                        } catch (Exception e) {
+                            Log.e("PARSING_ERROR", "Invalid date format in expense: " + expense.getExpenseDate());
+                        }
                     }
                 }
 
                 // Update expense display
                 expenseAmountDisplay.setText(String.format("$%.2f", totalExpenses));
-                updateRemainingBudget();
+                updateRemainingBudget(totalIncome, totalExpenses);
             }
 
             @Override
@@ -252,16 +275,15 @@ public class Dashboard extends AppCompatActivity {
     }
 
     // Method to update remaining budget text and progress bar
-    private void updateRemainingBudget() {
-        double remainingBudget = monthlyInc - totalExpenses;
+    private void updateRemainingBudget(double monthlyIncome, double totalExpenses) {
+        double remainingBudget = monthlyIncome - totalExpenses;
 
-        // Update remaining budget text
-        remainingAmountText.setText(String.format("$%.2f out of $%.2f", remainingBudget,monthlyInc));
+        remainingAmountText.setText(String.format("$%.2f out of $%.2f", remainingBudget, monthlyIncome));
 
-        // Update progress bar
-        int progress = (int) ((remainingBudget / monthlyInc) * 100);
+        int progress = (int) ((remainingBudget / monthlyIncome) * 100);
         progress = remainingBudget <= 0 ? 100 : Math.max(progress, 0);
         expensesProgressBar.setProgress(progress);
+
         if (remainingBudget <= 0) {
             expensesProgressBar.setProgressTintList(ColorStateList.valueOf(Color.RED));
         } else {
@@ -269,7 +291,6 @@ public class Dashboard extends AppCompatActivity {
             expensesProgressBar.setProgressBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.soft)));
         }
 
-        // Update manageText based on remaining budget
         manageText.setText("Remaining Budget: $" + String.format("%.2f", remainingBudget));
     }
 
@@ -284,18 +305,11 @@ public class Dashboard extends AppCompatActivity {
                 int currentMonth = LocalDate.now().getMonthValue(); //Gets month as int
                 String category = expense.getCategory();
                 float amount = (float) expense.getAmount();
+                int expenseMonth = Integer.parseInt(expense.getExpenseDate().substring(5,7));
+                int expYear = Integer.parseInt(expense.getExpenseDate().substring(0,4));
                 // This if-statement checks if the expense is monthly, if it is, it will be loaded into bar chart
-                if(expense.getIsMonthly()==true){
+                if (expense.getIsMonthly() || (currentYear == expYear && expenseMonth == currentMonth)) {
                     categoryTotals.put(category, categoryTotals.getOrDefault(category, 0f) + amount);
-                }
-                // Else, it will be checked to see if the timestamp corresponds to the current month and year, then it will be loaded into bar chart because it is for the current month
-                else{
-                    int expenseMonth = Integer.parseInt(expense.getExpenseDate().substring(5,7));
-                    int expYear = Integer.parseInt(expense.getExpenseDate().substring(0,4));
-                    // This is the if-statement that checks if the expense has the same month and year as this month
-                    if(currentYear==expYear && expenseMonth == currentMonth){
-                        categoryTotals.put(category, categoryTotals.getOrDefault(category, 0f) + amount);
-                    }
                 }
             }
         }
@@ -309,18 +323,46 @@ public class Dashboard extends AppCompatActivity {
             labels.add(entry.getKey());
             index++;
         }
-        //Label and data
+
+        // Create the BarDataSet
         BarDataSet dataSet = new BarDataSet(entries, "Expenses");
-        dataSet.setColor(ContextCompat.getColor(Dashboard.this, R.color.purple_500));
+
+        // Replace single color with dynamic color assignment
+        ArrayList<Integer> colors = new ArrayList<>();
+        Map<String, Integer> categoryColorMap = new HashMap<>();
+
+        int[] colorPalette = new int[]{
+                ContextCompat.getColor(this, R.color.chartColor1),
+                ContextCompat.getColor(this, R.color.chartColor2),
+                ContextCompat.getColor(this, R.color.chartColor3),
+                ContextCompat.getColor(this, R.color.chartColor4),
+                ContextCompat.getColor(this, R.color.chartColor5),
+                ContextCompat.getColor(this, R.color.chartColor6),
+                ContextCompat.getColor(this, R.color.chartColor7),
+                ContextCompat.getColor(this, R.color.chartColor8)
+        };
+
+        int colorIndex = 0;
+        for (String category : labels) {
+            if (!categoryColorMap.containsKey(category)) {
+                categoryColorMap.put(category, colorPalette[colorIndex % colorPalette.length]);
+                colorIndex++;
+            }
+            colors.add(categoryColorMap.get(category));
+        }
+
+        dataSet.setColors(ColorTemplate.LIBERTY_COLORS);
         dataSet.setValueTextSize(12f);
         BarData barData = new BarData(dataSet);
         barChart.setData(barData);
+
         //Axis handling
         XAxis xAxis = barChart.getXAxis();
         xAxis.setDrawLabels(true);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setGranularity(1f);
         xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
+
         YAxis leftAxis = barChart.getAxisLeft();
         YAxis rightAxis = barChart.getAxisRight();
         leftAxis.setGranularity(1f);

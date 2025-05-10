@@ -31,7 +31,12 @@ public class Income implements TransactionItem {
         }
     }
 
-    public String getExpenseDate(){  //getter for expense date
+    @Override
+    public String getExpenseDate() {
+        return "";
+    }
+
+    public String getIncomeDate(){  //getter for expense date
         return incomeDate;
     }
 

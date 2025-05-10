@@ -10,12 +10,11 @@ public class Expense implements TransactionItem {
 
     public Expense(){}
 
-    public Expense(double expenseAmount, String expenseCategory, String expenseDate, boolean isMonthly){}
-
-    public Expense(double expenseAmount, String expenseCategory, String expenseDate){
+    public Expense(double expenseAmount, String expenseCategory, String expenseDate, boolean isMonthly){
         this.expenseAmount = expenseAmount;
         this.expenseCategory = expenseCategory;
         this.expenseDate = expenseDate;
+        this.isMonthly = isMonthly;
     }
 
     public double getAmount(){ //getter for amount

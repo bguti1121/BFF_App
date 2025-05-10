@@ -129,7 +129,7 @@ public class YearlySummary extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot incomeSnap : snapshot.getChildren()) {
-                            String dateStr = incomeSnap.child("expenseDate").getValue(String.class);
+                            String dateStr = incomeSnap.child("incomeDate").getValue(String.class);
                             Double amount = incomeSnap.child("amount").getValue(Double.class);
                             // Error checking
                             Log.d("FirebaseCheck", "Income snapshot: " + snapshot.toString());

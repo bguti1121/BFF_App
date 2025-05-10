@@ -2,6 +2,7 @@ package com.example.bff_app;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -25,6 +26,8 @@ public class MonthlyDetailActivity extends AppCompatActivity {
     private double totalExp = 0, totalInc = 0;
     private final List<TransactionItem> combinedTransactions = new ArrayList<>();
     private TransactionAdapter transactionAdapter;
+    private String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,15 +93,44 @@ public class MonthlyDetailActivity extends AppCompatActivity {
         });
 
         // Load Saving Goal
-        userRef.child("savinggoals").child(String.valueOf(monthIndex)).addListenerForSingleValueEvent(new ValueEventListener() {
+        userRef.child("savinggoals").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String goal = snapshot.getValue(String.class);
-                goalsText.setText(goal != null ? "Goal: " + goal : "Goal: (none)");
+                List<String> goalTitles = new ArrayList<>();
+
+                for (DataSnapshot goalSnap : snapshot.getChildren()) {
+                    String createdDate = goalSnap.child("createdDate").getValue(String.class);
+                    String title = goalSnap.child("title").getValue(String.class);
+
+                    if (createdDate != null && title != null) {
+                        // Extract month from "YYYY-MM-DD"
+                        try {
+                            int goalMonth = Integer.parseInt(createdDate.split("-")[1]) - 1;
+                            if (goalMonth == monthIndex) {
+                                goalTitles.add(title);
+                            }
+                        } catch (Exception e) {
+                            Log.e("GoalParse", "Failed to parse date: " + createdDate);
+                        }
+                    }
+                }
+
+                if (goalTitles.isEmpty()) {
+                    goalsText.setText("Goals: (none)");
+                } else {
+                    StringBuilder sb = new StringBuilder("Goals:\n");
+                    for (String goal : goalTitles) {
+                        sb.append("• ").append(goal).append("\n");
+                    }
+                    goalsText.setText(sb.toString());
+                }
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+                goalsText.setText("Goals: (error)");
+                Log.e("GoalLoad", "Error loading goals", error.toException());
+            }
         });
     }
 
@@ -111,7 +143,7 @@ public class MonthlyDetailActivity extends AppCompatActivity {
                     if (income == null || income.getExpenseDate() == null) continue;
 
                     try {
-                        String[] parts = income.getExpenseDate().split("-");
+                        String[] parts = income.getIncomeDate().split("-");
                         int entryMonth = Integer.parseInt(parts[1]) - 1;
 
                         if (entryMonth == monthIndex) {

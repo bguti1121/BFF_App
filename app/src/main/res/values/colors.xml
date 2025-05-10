@@ -44,4 +44,13 @@
 
     <color name="login_blue">#007BFF</color>
 
+    <color name="chartColor1">#FF6B6B</color>
+    <color name="chartColor2">#4ECDC4</color>
+    <color name="chartColor3">#FFD93D</color>
+    <color name="chartColor4">#1A535C</color>
+    <color name="chartColor5">#FF9F1C</color>
+    <color name="chartColor6">#6A0572</color>
+    <color name="chartColor7">#A2D2FF</color>
+    <color name="chartColor8">#B5838D</color>
+
 </resources>
