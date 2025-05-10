@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,10 +22,27 @@ import java.util.List;
 
 public class GoalManager extends RecyclerView.Adapter<GoalManager.GoalViewHolder> {
     private List<Goal> goalList;
+    private Context context;
+    private OnEditClickListener editClickListener;
+    private OnUpdateSavedClickListener updateSavedClickListener;
 
-    public GoalManager(List<Goal> goals) {
+
+    public GoalManager(Context context, List<Goal> goals, OnEditClickListener editListener, OnUpdateSavedClickListener updateListener) {
+        this.context = context;
         this.goalList = goals;
+        this.editClickListener = editListener;
+        this.updateSavedClickListener = updateListener;
     }
+
+    public interface OnEditClickListener {
+        void onEditClick(Goal goal, int position);
+    }
+
+    public interface OnUpdateSavedClickListener {
+        void onUpdateSavedClick(Goal goal, int position);
+    }
+
+
 
     @NonNull
     @Override
@@ -39,24 +57,33 @@ public class GoalManager extends RecyclerView.Adapter<GoalManager.GoalViewHolder
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference goalsRef = FirebaseDatabase.getInstance().getReference("Users").child(uid).child("savinggoals");
         Goal goal = goalList.get(position);
+
+        double saved = goal.getAmountSaved();
+        double total = goal.getAmountGoal();
+        double percent = total > 0 ? (saved / total) * 100 : 0;
+
         holder.goalTitle.setText(goal.getTitle());
-        holder.goalAmount.setText("Goal: $" + goal.getAmountGoal());
-        holder.amountSaved.setText("Saved: $" + goal.getAmountSaved());
+        holder.goalDate.setText("Goal Date: " + goal.getTargetDate());
+        holder.amountProgressText.setText("Amount Saved: $" + saved + " / $" + total);
+        holder.progressBar.setProgress((int) percent);
 
         holder.editGoalButton.setOnClickListener(v -> {
-            Context context = v.getContext();
-            Intent intent = new Intent(context, EditGoalActivity.class);
-            intent.putExtra("goal", (Serializable) goalList.get(holder.getAdapterPosition()));
-            intent.putExtra("position", holder.getAdapterPosition());
-            if (context instanceof Activity) {
-                ((Activity) context).startActivityForResult(intent, 1); // edit request
+            if (editClickListener != null) {
+                editClickListener.onEditClick(goalList.get(holder.getAdapterPosition()), holder.getAdapterPosition());
+            }
+        });
+
+        holder.updateSavedButton.setOnClickListener(v -> {
+            if (updateSavedClickListener != null) {
+                updateSavedClickListener.onUpdateSavedClick(goalList.get(holder.getAdapterPosition()), holder.getAdapterPosition());
             }
         });
 
         holder.itemView.setOnClickListener(v -> {
             Context context = v.getContext();
             Intent intent = new Intent(context, GoalDetailActivity.class);
-            intent.putExtra("goal", (Serializable) goalList.get(holder.getAdapterPosition()));
+            Goal selectedGoal = goalList.get(holder.getAdapterPosition());
+            intent.putExtra("goal", selectedGoal);
 
             if (context instanceof Activity) {
                 ((Activity) context).startActivityForResult(intent, 2);
@@ -70,15 +97,20 @@ public class GoalManager extends RecyclerView.Adapter<GoalManager.GoalViewHolder
     }
 
     public static class GoalViewHolder extends RecyclerView.ViewHolder {
-        TextView goalTitle, goalAmount, amountSaved;
-        Button editGoalButton;
+        TextView goalTitle, goalDate, amountProgressText;
+        ProgressBar progressBar;
+        Button editGoalButton, updateSavedButton;
+
 
         public GoalViewHolder(@NonNull View itemView) {
             super(itemView);
             goalTitle = itemView.findViewById(R.id.goalTitle);
-            goalAmount = itemView.findViewById(R.id.goalAmount);
-            amountSaved = itemView.findViewById(R.id.amountSaved);
+            goalDate = itemView.findViewById(R.id.goalDate);
+            amountProgressText = itemView.findViewById(R.id.amountProgressText);
+            progressBar = itemView.findViewById(R.id.progressBar);
             editGoalButton = itemView.findViewById(R.id.editGoalButton);
+            updateSavedButton = itemView.findViewById(R.id.updateSavedButton);
+
         }
     }
 }

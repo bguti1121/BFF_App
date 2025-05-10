@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    card_view:cardCornerRadius="8dp"
+    card_view:cardCornerRadius="12dp"
     card_view:cardElevation="4dp">
 
     <LinearLayout
@@ -14,34 +13,75 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <TextView
-            android:id="@+id/goalTitle"
-            android:layout_width="wrap_content"
+        <!-- Horizontal row: Goal Name + Date -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/goal_title"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:id="@+id/goalTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/goal_name_goal"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/goalDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/goal_date"
+                android:textSize="16sp"
+                android:textColor="#666666" />
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/goalAmount"
+            android:id="@+id/amountProgressText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/saved_0_00_100_00"
-            android:textSize="16sp"
-            android:layout_marginTop="4dp" />
+            android:layout_marginTop="15dp"
+            android:text="@string/goal_amount_saved"
+            android:textSize="14sp"
+            android:layout_marginBottom="4dp" />
 
-        <TextView
-            android:id="@+id/amountSaved"
-            android:layout_width="wrap_content"
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:layout_marginBottom="15dp"
+            android:progress="50"
+            android:max="100"
+            android:progressDrawable="@drawable/progress_bar_thick" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/saved_0_00_100_00_"
-            android:textSize="16sp"
-            android:layout_marginTop="4dp" />
-        <Button
-            android:id="@+id/editGoalButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/edit_goal_savingGoal"
-            android:layout_marginTop="8dp"/>
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="12dp">
+
+            <Button
+                android:id="@+id/editGoalButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edit_goal" />
+
+            <Space
+                android:layout_width="12dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/updateSavedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_amount_saved" />
+        </LinearLayout>
+
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>

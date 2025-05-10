@@ -15,6 +15,9 @@
         android:theme="@style/Theme.BFF_App"
         tools:targetApi="31">
         <activity
+            android:name=".UpdateSavedActivity"
+            android:exported="false" />
+        <activity
             android:name=".GoalDetailActivity"
             android:exported="false" />
         <activity

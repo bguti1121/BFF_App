@@ -1,78 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp">
+    android:orientation="vertical"
+    android:padding="24dp">
 
+    <!-- Back Button -->
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:backgroundTint="#D0C3F9"
+        android:textColor="#000000"/>
+
+    <!-- Goal Title -->
+    <TextView
+        android:id="@+id/goalTitleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Goal Name"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Progress Bar -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="50dp"
+        android:progress="50"
+        android:max="100"
+        android:progressDrawable="@drawable/progress_bar_thick"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Labels under progress bar -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/backButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="@string/back_goalDetail"
-            android:padding="8dp"
-            android:backgroundTint="#A58ADF"
-            android:textColor="#000000"
-            android:layout_marginBottom="12dp"/>
-
-        <TextView
-            android:id="@+id/goalTitleText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/goal_laptop_goalDetail"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="12dp"/>
-
-        <TextView
-            android:id="@+id/goalAmountText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/goal_amount_1000_00_goalDetail" />
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp">
 
         <TextView
             android:id="@+id/amountSavedText"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/amount_saved_250_00_goalDetail" />
+            android:layout_weight="1"
+            android:text="Amount Saved"
+            android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/amountLeftText"
-            android:layout_width="match_parent"
+            android:id="@+id/goalAmountText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/amount_left_750_00_goalDetail"
-            android:layout_marginBottom="12dp" />
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:progress="25"
-            android:max="100"
-            style="@android:style/Widget.ProgressBar.Horizontal"
-            android:progressTint="#A58ADF"
-            android:layout_marginBottom="20dp" />
-
-        <Button
-            android:id="@+id/completeGoalBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/mark_goal_as_completed_goalDetail"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="#90EE90" />
-
-        <Button
-            android:id="@+id/deleteGoalBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/delete_goal_goalDetail"
-            android:backgroundTint="#FF6961" />
+            android:text="Goal Amount: $___"
+            android:textSize="14sp" />
 
     </LinearLayout>
-</ScrollView>
+
+    <!-- Mark Complete Button -->
+    <Button
+        android:id="@+id/completeGoalBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Mark Goal as Completed"
+        android:backgroundTint="#A3F9B9"
+        android:textColor="#000000"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Delete Goal Button -->
+    <Button
+        android:id="@+id/deleteGoalBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delete Goal"
+        android:backgroundTint="#FF7F7F"
+        android:textColor="#000000" />
+</LinearLayout>

@@ -13,65 +13,59 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:text="@string/back_editGoal"
+            android:text="Back"
             android:padding="8dp"
             android:backgroundTint="#A58ADF"
-            android:textColor="#000000"
-            android:layout_marginBottom="12dp"/>
+            android:textColor="#000000"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/edit_goal"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:text="Edit Goal"
             android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="16dp"/>
+            android:textStyle="bold"/>
 
         <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
             android:id="@+id/editGoalName"
-            android:hint="@string/goal_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:hint="Goal Name" />
 
         <EditText
-            android:id="@+id/editGoalDescription"
-            android:hint="@string/description_Goal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minLines="3"
-            android:gravity="top"
-            android:layout_marginTop="12dp" />
-
-        <EditText
+            android:layout_marginBottom="15dp"
             android:id="@+id/editGoalAmount"
-            android:hint="@string/edit_saving_goal_Goal"
-            android:inputType="numberDecimal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp" />
+            android:hint="Edit Saving Goal"
+            android:inputType="numberDecimal" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/edit_date_goals"
-            android:layout_marginTop="12dp" />
+            android:text="Edit Date:"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"/>
 
         <EditText
             android:id="@+id/goalDateInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:hint="@string/select_target_date_editGoal"
+            android:layout_marginBottom="20dp"
+            android:hint="Select Target Date"
             android:focusable="false"
             android:clickable="true" />
 
         <Button
             android:id="@+id/saveEditedGoalBtn"
-            android:text="@string/save_editGoal"
+            android:text="Save"
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
 
     </LinearLayout>
 </ScrollView>

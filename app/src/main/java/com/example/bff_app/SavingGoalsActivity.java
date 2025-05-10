@@ -59,9 +59,28 @@ public class SavingGoalsActivity extends AppCompatActivity {
         addGoalBtn = findViewById(R.id.addGoalButton);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         goalList = new ArrayList<>();
-        adapter = new GoalManager(goalList);
+
+        adapter = new GoalManager(this, goalList,
+                (goal, position) -> {
+                    // Edit click
+                    Intent intent = new Intent(SavingGoalsActivity.this, EditGoalActivity.class);
+                    intent.putExtra("goal", goal);
+                    intent.putExtra("position", position);
+                    startActivityForResult(intent, 1);
+                },
+                (goal, position) -> {
+                    // ✅ Update saved click
+                    Intent intent = new Intent(SavingGoalsActivity.this, UpdateSavedActivity.class);
+                    intent.putExtra("goal", goal);
+                    startActivity(intent);
+                }
+        );
+
+
         recyclerView.setAdapter(adapter);
+
 
         dashboardBtn = findViewById(R.id.dashboard_btn);
         summaryBtn = findViewById(R.id.summary_btn);
@@ -93,6 +112,7 @@ public class SavingGoalsActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Goal goal = dataSnapshot.getValue(Goal.class);
                     if (goal != null) {
+                        goal.setKey(dataSnapshot.getKey()); // ✅ sets Firebase document key
                         goalList.add(goal);
                     }
                     else{
@@ -164,22 +184,54 @@ public class SavingGoalsActivity extends AppCompatActivity {
             }
         }
 
-        // Handle goal deletion from detail view (requestCode 2)
+        // ✅ Handle goal deletion from detail view (requestCode 2)
         if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
-            Goal deletedGoal = (Goal) data.getSerializableExtra("deletedGoal");
+            // ✅ Handle completed goal
+            Goal completedGoal = (Goal) data.getSerializableExtra("completedGoal");
+            if (completedGoal != null) {
+                for (int i = 0; i < goalList.size(); i++) {
+                    Goal g = goalList.get(i);
+                    if (g.getKey() != null && g.getKey().equals(completedGoal.getKey())) {
+                        String key = g.getKey();
+                        if (key != null) {
+                            userRef.child(key).removeValue()
+                                    .addOnSuccessListener(unused -> {
+                                        Toast.makeText(this, "Goal completed!", Toast.LENGTH_SHORT).show();
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        Toast.makeText(this, "Failed to complete goal", Toast.LENGTH_SHORT).show();
+                                        Log.e("SavingGoals", "Complete failed: " + e.getMessage());
+                                    });
+                        }
+                        break;
+                    }
+                }
+                return; // ✅ Prevent falling into the delete block
+            }
 
+            // ✅ Handle deleted goal
+            Goal deletedGoal = (Goal) data.getSerializableExtra("deletedGoal");
             if (deletedGoal != null) {
                 for (int i = 0; i < goalList.size(); i++) {
                     Goal g = goalList.get(i);
-                    if (g.getTitle().equals(deletedGoal.getTitle())
-                            && g.getAmountGoal() == deletedGoal.getAmountGoal()) {
-                        goalList.remove(i);
-                        adapter.notifyItemRemoved(i);
-                        Toast.makeText(this, "Goal deleted", Toast.LENGTH_SHORT).show();
+                    if (g.getKey() != null && g.getKey().equals(deletedGoal.getKey())) {
+                        String key = g.getKey();
+                        if (key != null) {
+                            userRef.child(key).removeValue()
+                                    .addOnSuccessListener(unused -> {
+                                        Toast.makeText(this, "Goal deleted", Toast.LENGTH_SHORT).show();
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        Toast.makeText(this, "Failed to delete goal", Toast.LENGTH_SHORT).show();
+                                        Log.e("SavingGoals", "Delete failed: " + e.getMessage());
+                                    });
+                        }
                         break;
                     }
                 }
             }
         }
+
+
     }
 }

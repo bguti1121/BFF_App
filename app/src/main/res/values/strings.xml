@@ -199,4 +199,12 @@
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="sign_up_login">Sign Up</string>
     <string name="enter_email_field">Enter Email</string>
+    <string name="goal_date">Goal Date: XX/XX/XX</string>
+    <string name="goal_amount_saved">Amount Saved: $0.00 / $X.XX</string>
+    <string name="add_amount_saved">Add Amount Saved</string>
+    <string name="current_savings">Currently Saved: $0.00</string>
+    <string name="enter_amount_to_add">Enter amount to add</string>
+    <string name="add_to_saved">Add to Saved</string>
+
+
 </resources>
