@@ -63,7 +63,7 @@ public class EditExpenses extends AppCompatActivity {
         loadExistingExpenses();
     }
 
-    private void loadExistingExpenses() { //new
+    private void loadExistingExpenses() {
         expenseContainer.removeAllViews();
         String currentMonth = new SimpleDateFormat("yyyy-MM", Locale.getDefault()).format(new Date());
 
@@ -73,31 +73,35 @@ public class EditExpenses extends AppCompatActivity {
                     Expense expense = snapshot.getValue(Expense.class);
                     String expenseId = snapshot.getKey();
 
-                    if (expense != null && expenseId != null &&
-                            expense.getIsMonthly() && // Only show if isMonthly is true
-                            expense.getExpenseDate() != null &&
-                            expense.getExpenseDate().startsWith(currentMonth)) { // Only this month
+                    if (expense != null && expenseId != null) {
+                        boolean isMonthly = expense.getIsMonthly();
+                        String expenseDate = expense.getExpenseDate();
 
-                        View row = LayoutInflater.from(this).inflate(R.layout.expense_row, null);
-                        EditText categoryInput = row.findViewById(R.id.expenseCategory);
-                        EditText amountInput = row.findViewById(R.id.expenseAmount);
-                        CheckBox monthlyCheckbox = row.findViewById(R.id.checkbox);
+                        // Show if monthly OR if this month's non-recurring
+                        boolean showExpense = isMonthly || (expenseDate != null && expenseDate.startsWith(currentMonth));
 
-                        categoryInput.setText(expense.getCategory());
-                        amountInput.setText(String.valueOf(expense.getAmount()));
-                        monthlyCheckbox.setChecked(expense.getIsMonthly()); // set checkbox state
+                        if (showExpense) {
+                            View row = LayoutInflater.from(this).inflate(R.layout.expense_row, null);
+                            EditText categoryInput = row.findViewById(R.id.expenseCategory);
+                            EditText amountInput = row.findViewById(R.id.expenseAmount);
+                            CheckBox monthlyCheckbox = row.findViewById(R.id.checkbox);
 
-                        row.setTag(R.id.expenseIdTag, expenseId);
-                        row.setTag(R.id.expenseDateTag, expense.getExpenseDate());
+                            categoryInput.setText(expense.getCategory());
+                            amountInput.setText(String.valueOf(expense.getAmount()));
+                            monthlyCheckbox.setChecked(isMonthly);
 
-                        Button deleteButton = row.findViewById(R.id.deleteExpenseBtn);
-                        deleteButton.setVisibility(View.VISIBLE);
-                        deleteButton.setOnClickListener(v -> {
-                            userRef.child(expenseId).removeValue();
-                            expenseContainer.removeView(row);
-                        });
+                            row.setTag(R.id.expenseIdTag, expenseId);
+                            row.setTag(R.id.expenseDateTag, expenseDate);
 
-                        expenseContainer.addView(row);
+                            Button deleteButton = row.findViewById(R.id.deleteExpenseBtn);
+                            deleteButton.setVisibility(View.VISIBLE);
+                            deleteButton.setOnClickListener(v -> {
+                                userRef.child(expenseId).removeValue();
+                                expenseContainer.removeView(row);
+                            });
+
+                            expenseContainer.addView(row);
+                        }
                     }
                 }
             }
