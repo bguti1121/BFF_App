@@ -116,7 +116,7 @@ public class YearlySummary extends AppCompatActivity {
                 for (DataSnapshot expenseSnap : snapshot.getChildren()) {
                     String dateStr = expenseSnap.child("expenseDate").getValue(String.class);
                     Double amount = expenseSnap.child("amount").getValue(Double.class);
-                    Boolean isMonthly = expenseSnap.child("monthly").getValue(Boolean.class);
+                    Boolean isMonthly = expenseSnap.child("isMonthly").getValue(Boolean.class);
                     // Error Checking
                     Log.d("FirebaseCheck", "Expense snapshot: " + snapshot.toString());
 
