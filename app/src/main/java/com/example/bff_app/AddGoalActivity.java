@@ -101,7 +101,8 @@ public class AddGoalActivity extends AppCompatActivity {
                 return;
             }
 
-            Goal newGoal = new Goal(title, goalAmount, saved, date);
+            String createdDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+            Goal newGoal = new Goal(title, goalAmount, saved, date, createdDate);
 
             // Push goal to Firebase
             userRef.push().setValue(newGoal).addOnCompleteListener(task -> {

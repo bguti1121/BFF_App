@@ -7,24 +7,18 @@ public class Goal implements Serializable {
     private double amountGoal;
     private double amountSaved;
     private String targetDate;
-
+    private String createdDate;
     private String key;//Firebase document key
 
     public Goal(){}
 
-    public Goal(String title, double amountGoal, double amountSaved) {
-        this.title = title;
-        this.amountGoal = amountGoal;
-        this.amountSaved = amountSaved;
-    }
-
-    public Goal(String title, double amountGoal, double amountSaved, String targetDate) {
+    public Goal(String title, double amountGoal, double amountSaved, String targetDate, String createdDate) {
         this.title = title;
         this.amountGoal = amountGoal;
         this.amountSaved = amountSaved;
         this.targetDate = targetDate;
     }
-
+    // Getters
     public String getKey() {
         return key;
     }
@@ -42,6 +36,8 @@ public class Goal implements Serializable {
     public double getAmountSaved() {
         return amountSaved;
     }
+    public String getCreatedDate() { return createdDate; }
+    // Setters
     public void setTitle(String setTitle){
         this.title = setTitle;
     }
@@ -51,13 +47,12 @@ public class Goal implements Serializable {
     public void setAmountSaved(double setAmount){
         this.amountSaved = setAmount;
     }
-
     public String getTargetDate() {
         return targetDate;
     }
-
     public void setTargetDate(String targetDate) {
         this.targetDate = targetDate;
     }
+    public void setCreatedDate(String createdDate) { this.createdDate = createdDate; }
 
 }

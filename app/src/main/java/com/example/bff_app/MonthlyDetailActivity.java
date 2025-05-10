@@ -44,7 +44,7 @@ public class MonthlyDetailActivity extends AppCompatActivity {
         monthLabel = findViewById(R.id.monthLabel);
         totalExpenses = findViewById(R.id.totalExpenses);
         totalIncome = findViewById(R.id.totalIncome);
-        goalsText = findViewById(R.id.goalsText);
+        //goalsText = findViewById(R.id.goalsText);
         expensesList = findViewById(R.id.expensesRecycler);
 
         monthIndex = getIntent().getIntExtra("monthIndex", 0);
@@ -52,8 +52,7 @@ public class MonthlyDetailActivity extends AppCompatActivity {
 
         ImageButton backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(v -> finish());// finishes activity and returns to YearlySummary
-        // Loads the transactionAdapter which handles showing expenses
-        // and income
+        // Loads the transactionAdapter which handles showing expenses and incomes
         transactionAdapter = new TransactionAdapter(combinedTransactions);
         expensesList.setLayoutManager(new LinearLayoutManager(this));
         expensesList.setAdapter(transactionAdapter);
@@ -92,8 +91,8 @@ public class MonthlyDetailActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {}
         });
 
-        // Load Saving Goal
-        userRef.child("savinggoals").addListenerForSingleValueEvent(new ValueEventListener() {
+        // Load Saving Goal (removed because goals aren't displaying properly in MonthlyDetail)
+        /* userRef.child("savinggoals").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 List<String> goalTitles = new ArrayList<>();
@@ -131,7 +130,7 @@ public class MonthlyDetailActivity extends AppCompatActivity {
                 goalsText.setText("Goals: (error)");
                 Log.e("GoalLoad", "Error loading goals", error.toException());
             }
-        });
+        });*/
     }
 
     private void loadMonthlyIncome(DatabaseReference userRef) {
@@ -140,7 +139,7 @@ public class MonthlyDetailActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snap : snapshot.getChildren()) {
                     Income income = snap.getValue(Income.class);
-                    if (income == null || income.getExpenseDate() == null) continue;
+                    if (income == null || income.getIncomeDate() == null) continue;
 
                     try {
                         String[] parts = income.getIncomeDate().split("-");

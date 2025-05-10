@@ -47,15 +47,15 @@
         android:textColor="#388E3C"
         android:layout_marginBottom="8dp" />
 
-    <!-- Goals -->
-    <TextView
+    <!-- Goals (commented out to avoid it not displaying during demo) -->
+    <!--<TextView
         android:id="@+id/goalsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/goal_save_200_monthly_detail"
         android:textSize="16sp"
         android:textColor="#555"
-        android:layout_marginBottom="12dp" />
+        android:layout_marginBottom="12dp" />-->
 
     <!-- Expense RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView

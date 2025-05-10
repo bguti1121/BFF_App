@@ -61,6 +61,7 @@ public class Settings extends AppCompatActivity {
         changePasswordBtn = findViewById(R.id.changePassword);
         updateEmailBtn = findViewById(R.id.updateEmail);
         darkModeSwitch = findViewById(R.id.darkMode);
+        darkModeSwitch.setChecked(darkModeEnabled);
         // Image buttons
         dashboardBtn = findViewById(R.id.dashboard_btn);
         summaryBtn = findViewById(R.id.summary_btn);
