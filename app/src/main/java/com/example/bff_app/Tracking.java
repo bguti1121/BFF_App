@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.view.LayoutInflater;
@@ -49,8 +48,6 @@ import java.util.Map;
 import java.util.Set;
 
 public class Tracking extends AppCompatActivity {
-
-    // UI components
     private BarChart barChart;
     private ImageButton backButton;
     private RelativeLayout popupContainer;
@@ -129,7 +126,6 @@ public class Tracking extends AppCompatActivity {
                     showPopup(category, date, true);
 
                 }
-
                 // Shows the popup if the user clicks on Expense Bar
                 else if (dataSetIndex == 1) { // Expense
                     for (Expense ex : expenseManager.getAllExpenses()) {
@@ -162,10 +158,23 @@ public class Tracking extends AppCompatActivity {
                 // Clears previously stored data to avoid duplicates
                 expenseManager.getAllExpenses().clear();
 
-                // Loops through each expense entry and add to expense list
+                // Loops through each expense entry and add to expense list if its part of this month
                 for (DataSnapshot snap : expSnap.getChildren()) {
                     Expense e = snap.getValue(Expense.class);
-                    if (e != null) expenseManager.getAllExpenses().add(e);
+                    if (e != null) {
+                        if (isInCurrentMonth(e.getExpenseDate())) {
+                            expenseManager.getAllExpenses().add(e);
+                        } else if (e.getIsMonthly() && isRecurringInCurrentMonth(e.getExpenseDate())) {
+                            // Create a copy with the current month date for display purposes
+                            Expense recurringCopy = new Expense(
+                                    e.getAmount(),
+                                    e.getCategory(),
+                                    getCurrentMonthDate(),  // helper method to override with current date
+                                    true // isMonthly
+                            );
+                            expenseManager.getAllExpenses().add(recurringCopy);
+                        }
+                    }
                 }
 
                 // Loads incomes from database
@@ -175,10 +184,12 @@ public class Tracking extends AppCompatActivity {
                         // Clears previously stored data
                         incomeManager.getAllIncomes().clear();
 
-                        // Loops through each income entry and add to income list
+                        // Loops through each income entry and add to income list if its part of this month
                         for (DataSnapshot snap2 : incSnap.getChildren()) {
                             Income i = snap2.getValue(Income.class);
-                            if (i != null) incomeManager.getAllIncomes().add(i);
+                            if (i != null && isInCurrentMonth(i.getIncomeDate())) {
+                                incomeManager.getAllIncomes().add(i);
+                            }
                         }
 
                         // Combines the expenses and incomes into one list (transaction list) so they could both show together
@@ -213,6 +224,29 @@ public class Tracking extends AppCompatActivity {
             }
         });
     }
+
+    // Checks if an old recurring expense should appear this month
+    private boolean isRecurringInCurrentMonth(String originalDate) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+            Date date = sdf.parse(originalDate);
+            if (date == null) return false;
+
+            // Get current month/year
+            Date now = new Date();
+            SimpleDateFormat ym = new SimpleDateFormat("yyyy-MM", Locale.US);
+            return ym.format(now).equals(ym.format(new Date()));
+        } catch (ParseException e) {
+            return false;
+        }
+    }
+
+    // Returns today's date in yyyy-MM-dd format for display
+    private String getCurrentMonthDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        return sdf.format(new Date());
+    }
+
     private void updateCategoriesList() {
 
         // Initializes a LinkedHashSet to store all the categories
@@ -451,6 +485,21 @@ public class Tracking extends AppCompatActivity {
         @Override
         public int getItemCount() {
             return trackingList.size();
+        }
+    }
+    private boolean isInCurrentMonth(String dateStr) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+            Date date = sdf.parse(dateStr);
+            if (date == null) return false;
+
+            Date currentDate = new Date();
+            SimpleDateFormat monthFormat = new SimpleDateFormat("MM-yyyy", Locale.US);
+
+            return monthFormat.format(date).equals(monthFormat.format(currentDate));
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }

@@ -74,6 +74,7 @@ public class EditExpenses extends AppCompatActivity {
                     String expenseId = snapshot.getKey();
 
                     if (expense != null && expenseId != null &&
+                            expense.getIsMonthly() && // Only show if isMonthly is true
                             expense.getExpenseDate() != null &&
                             expense.getExpenseDate().startsWith(currentMonth)) { // Only this month
 

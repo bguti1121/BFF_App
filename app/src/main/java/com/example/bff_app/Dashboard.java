@@ -327,30 +327,6 @@ public class Dashboard extends AppCompatActivity {
         // Create the BarDataSet
         BarDataSet dataSet = new BarDataSet(entries, "Expenses");
 
-        // Replace single color with dynamic color assignment
-        ArrayList<Integer> colors = new ArrayList<>();
-        Map<String, Integer> categoryColorMap = new HashMap<>();
-
-        int[] colorPalette = new int[]{
-                ContextCompat.getColor(this, R.color.chartColor1),
-                ContextCompat.getColor(this, R.color.chartColor2),
-                ContextCompat.getColor(this, R.color.chartColor3),
-                ContextCompat.getColor(this, R.color.chartColor4),
-                ContextCompat.getColor(this, R.color.chartColor5),
-                ContextCompat.getColor(this, R.color.chartColor6),
-                ContextCompat.getColor(this, R.color.chartColor7),
-                ContextCompat.getColor(this, R.color.chartColor8)
-        };
-
-        int colorIndex = 0;
-        for (String category : labels) {
-            if (!categoryColorMap.containsKey(category)) {
-                categoryColorMap.put(category, colorPalette[colorIndex % colorPalette.length]);
-                colorIndex++;
-            }
-            colors.add(categoryColorMap.get(category));
-        }
-
         dataSet.setColors(ColorTemplate.LIBERTY_COLORS);
         dataSet.setValueTextSize(12f);
         BarData barData = new BarData(dataSet);

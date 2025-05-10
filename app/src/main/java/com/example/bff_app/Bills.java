@@ -29,6 +29,10 @@ import com.google.firebase.database.ValueEventListener;
 import android.graphics.PorterDuff;
 
 import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class Bills extends AppCompatActivity {
     private PieChart pieChart;
@@ -74,11 +78,31 @@ public class Bills extends AppCompatActivity {
                 expenseList.clear();
                 totalAmount = 0;
 
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                Calendar now = Calendar.getInstance();
+                int currentMonth = now.get(Calendar.MONTH);
+                int currentYear = now.get(Calendar.YEAR);
+
                 for (DataSnapshot child : snapshot.getChildren()) {
                     Expense e = child.getValue(Expense.class);
-                    if (e != null) {
-                        expenseList.add(e);
-                        totalAmount += e.getAmount();
+                    if (e != null && e.getExpenseDate() != null) {
+                        try {
+                            Date date = sdf.parse(e.getExpenseDate());
+                            if (date != null) {
+                                Calendar cal = Calendar.getInstance();
+                                cal.setTime(date);
+
+                                int expenseMonth = cal.get(Calendar.MONTH);
+                                int expenseYear = cal.get(Calendar.YEAR);
+
+                                if ((expenseMonth == currentMonth && expenseYear == currentYear) || e.getIsMonthly()) {
+                                    expenseList.add(e);
+                                    totalAmount += e.getAmount();
+                                }
+                            }
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                        }
                     }
                 }
                 // Updates pie chart
