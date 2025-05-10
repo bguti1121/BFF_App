@@ -108,6 +108,19 @@ public class EditExpenses extends AppCompatActivity {
         });
     }
     private void addExpenseRow() {
+        // Check if the last row is blank before adding a new one
+        if (expenseContainer.getChildCount() > 0) {
+            View lastRow = expenseContainer.getChildAt(expenseContainer.getChildCount() - 1);
+            EditText lastCategory = lastRow.findViewById(R.id.expenseCategory);
+            EditText lastAmount = lastRow.findViewById(R.id.expenseAmount);
+
+            if (lastCategory.getText().toString().trim().isEmpty() &&
+                    lastAmount.getText().toString().trim().isEmpty()) {
+                lastCategory.setError("Fill this before adding another");
+                lastAmount.setError("Fill this before adding another");
+                return;
+            }
+        }
         View row = LayoutInflater.from(this).inflate(R.layout.expense_row, null);
         expenseContainer.addView(row); //new
         Button deleteButton = row.findViewById(R.id.deleteExpenseBtn);
@@ -135,6 +148,8 @@ public class EditExpenses extends AppCompatActivity {
         }
 
         totalExpense = 0.0;
+        boolean hasError = false;
+
 
         for (int i = 0; i < expenseContainer.getChildCount(); i++) {
             View row = expenseContainer.getChildAt(i);
@@ -145,8 +160,14 @@ public class EditExpenses extends AppCompatActivity {
             String category = categoryInput.getText().toString().trim();
             String amountStr = amountInput.getText().toString().trim();
 
-            if (category.isEmpty() && amountStr.isEmpty()) {
-                continue; // Completely blank row - skip it
+            if (category.isEmpty()) {
+                categoryInput.setError("Category is required");
+                hasError = true;
+            }
+
+            if (amountStr.isEmpty()) {
+                amountInput.setError("Amount is required");
+                hasError = true;
             }
 
             if (!category.isEmpty() && !amountStr.isEmpty()) {
@@ -165,9 +186,19 @@ public class EditExpenses extends AppCompatActivity {
                         expensesRef.push().setValue(newExpense);
                     }
                 } catch (NumberFormatException e) {
-                    Log.e("AddExpense", "Invalid amount: " + amountStr);
+                    amountInput.setError("Enter a valid number");
+                    hasError = true;
                 }
             }
+        }
+
+        for (String expenseId : deletedExpenseIds) {
+            expensesRef.child(expenseId).removeValue();
+        }
+
+        if (hasError) {
+            // Stop execution if any input was invalid
+            return;
         }
 
         // Continue to MainActivity after saving

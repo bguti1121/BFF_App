@@ -61,6 +61,11 @@ public class SetExpensesActivity extends AppCompatActivity {
     // addExpenseRow function
     private void addExpenseRow() {
         View row = LayoutInflater.from(this).inflate(R.layout.expense_row, null);
+        // Hide the delete button if it exists in the layout
+        Button deleteButton = row.findViewById(R.id.deleteExpenseBtn);
+        if (deleteButton != null) {
+            deleteButton.setVisibility(View.GONE);
+        }
         expenseContainer.addView(row);
     }
     // Saves expenses to fire base under User --> Expenses

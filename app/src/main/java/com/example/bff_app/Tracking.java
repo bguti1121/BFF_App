@@ -438,9 +438,12 @@ public class Tracking extends AppCompatActivity {
         SimpleDateFormat fmt = new SimpleDateFormat("MMM d", Locale.US);
         Collections.sort(list, (a, b) -> {
             try {
-                return fmt.parse(a.getExpenseDate())
-                        .compareTo(fmt.parse(b.getExpenseDate()));
-            } catch (ParseException e) {
+                String dateA = a.getExpenseDate();
+                String dateB = b.getExpenseDate();
+                if (dateA == null || dateB == null) return 0;
+
+                return fmt.parse(dateA).compareTo(fmt.parse(dateB));
+            } catch (ParseException | NullPointerException e) {
                 return 0;
             }
         });
@@ -451,9 +454,12 @@ public class Tracking extends AppCompatActivity {
         SimpleDateFormat fmt = new SimpleDateFormat("MMM d", Locale.US);
         Collections.sort(list, (a, b) -> {
             try {
-                return fmt.parse(a.getExpenseDate())
-                        .compareTo(fmt.parse(b.getExpenseDate()));
-            } catch (ParseException e) {
+                String dateA = a.getExpenseDate();
+                String dateB = b.getExpenseDate();
+                if (dateA == null || dateB == null) return 0;
+
+                return fmt.parse(dateA).compareTo(fmt.parse(dateB));
+            } catch (ParseException | NullPointerException e) {
                 return 0;
             }
         });

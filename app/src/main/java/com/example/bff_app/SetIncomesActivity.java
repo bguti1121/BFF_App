@@ -66,6 +66,11 @@ public class SetIncomesActivity extends AppCompatActivity {
     // addIncomeRow function
     private void addIncomeRow() {
         View row = LayoutInflater.from(this).inflate(R.layout.income_row, null);
+        // Hide the delete button if it exists in the layout
+        Button deleteButton = row.findViewById(R.id.deleteIncomeBtn);
+        if (deleteButton != null) {
+            deleteButton.setVisibility(View.GONE);
+        }
         incomeContainer.addView(row);
     }
     // Save income and total monthly budget to firebase

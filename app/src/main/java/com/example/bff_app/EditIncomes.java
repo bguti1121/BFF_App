@@ -107,6 +107,19 @@ public class EditIncomes extends AppCompatActivity {
     }
 
     private void addIncomeRow() {
+        // Prevent adding a new row if the last one is completely blank
+        if (incomeContainer.getChildCount() > 0) {
+            View lastRow = incomeContainer.getChildAt(incomeContainer.getChildCount() - 1);
+            EditText lastCategory = lastRow.findViewById(R.id.IncomeCategory);
+            EditText lastAmount = lastRow.findViewById(R.id.IncomeAmount);
+
+            if (lastCategory.getText().toString().trim().isEmpty() &&
+                    lastAmount.getText().toString().trim().isEmpty()) {
+                lastCategory.setError("Fill this before adding another");
+                lastAmount.setError("Fill this before adding another");
+                return;
+            }
+        }
         View row = LayoutInflater.from(this).inflate(R.layout.income_row, null);
         incomeContainer.addView(row);
         // Make the delete button visible for all rows except the first one
@@ -138,7 +151,10 @@ public class EditIncomes extends AppCompatActivity {
                 }
             });
         }
-        
+
+        boolean hasInvalidInput = false;
+        totalIncome = 0.0; // Reset total before summing
+
         for (int i = 0; i < incomeContainer.getChildCount(); i++) {
             View row = incomeContainer.getChildAt(i);
             EditText categoryInput = row.findViewById(R.id.IncomeCategory);
@@ -147,15 +163,27 @@ public class EditIncomes extends AppCompatActivity {
             String category = categoryInput.getText().toString().trim();
             String amountStr = amountInput.getText().toString().trim();
 
-            if (!category.isEmpty() && !amountStr.isEmpty()) {
+            // Skip completely empty rows
+            if (category.isEmpty() && amountStr.isEmpty()) continue;
+
+            if (category.isEmpty()) {
+                categoryInput.setError("Required");
+                hasInvalidInput = true;
+            }
+
+            if (amountStr.isEmpty()) {
+                amountInput.setError("Required");
+                hasInvalidInput = true;
+            }
+
+            if (!amountStr.isEmpty()) {
                 try {
                     double amount = Double.parseDouble(amountStr);
                     totalIncome += amount;
-                    // Saves current date
-                    Object tag = row.getTag(); // Firebase ID if existing
+
+                    Object tag = row.getTag();
 
                     if (tag != null) {
-                        // Existing income - retain original date
                         String incomeId = tag.toString();
                         incomesRef.child(incomeId).get().addOnSuccessListener(snapshot -> {
                             Income existingIncome = snapshot.getValue(Income.class);
@@ -165,15 +193,21 @@ public class EditIncomes extends AppCompatActivity {
                             }
                         });
                     } else {
-                        // New income - assign today's date
                         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
                         Income newIncome = new Income(amount, category, date);
                         incomesRef.push().setValue(newIncome);
                     }
                 } catch (NumberFormatException e) {
-                    Log.e("AddIncome", "Invalid income amount: " + amountStr);
+                    amountInput.setError("Invalid number");
+                    hasInvalidInput = true;
                 }
             }
+        }
+
+        // Prevent saving if any invalid input was found
+        if (hasInvalidInput) {
+            Log.w("AddIncome", "Form has errors; not saving to Firebase");
+            return;
         }
 
         // This is what updates the budget!

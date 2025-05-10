@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="12dp"
     android:elevation="8dp"
-    android:background="@drawable/expense_popup" >
+    android:background="@null" >
 
     <!-- category text is a placeholder -->
     <TextView
