@@ -41,6 +41,7 @@
         <!-- Set up monthly income TextView -->
         <TextView
             android:text="@string/set_up_your_monthly_income"
+            android:textColor="#000000"
             android:textSize="30sp"
             android:textStyle="bold"
             android:fontFamily="sans-serif-medium"
@@ -74,7 +75,7 @@
             android:layout_marginTop="24dp"
             android:layout_gravity = "center"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="#000000"
             android:textSize = "17sp"
             android:backgroundTint="@color/bannerGreen"/>
         </LinearLayout>
